@@ -12,8 +12,6 @@ import {PageNotFoundComponent} from './pageNotFound/pageNotFound.component';
 import {SimulatorComponent} from './simulator/simulator.component';
 import {DragulaModule} from 'ng2-dragula/ng2-dragula';
 import 'dragula/dist/dragula.css';
-import {SidebarComponent} from './simulator/sidebar/sidebar.component';
-
 
 
 
@@ -37,7 +35,6 @@ import {SidebarComponent} from './simulator/sidebar/sidebar.component';
         AboutComponent,
         PageNotFoundComponent,
         SimulatorComponent,
-        SidebarComponent
     ],
     bootstrap: [ AppComponent ]
 })
