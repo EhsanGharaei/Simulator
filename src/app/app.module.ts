@@ -10,6 +10,7 @@ import {AboutComponent} from './about/about.component';
 import { RouterModule }   from '@angular/router';
 import {PageNotFoundComponent} from './pageNotFound/pageNotFound.component';
 import {SimulatorComponent} from './simulator/simulator.component';
+import {Simulator2Component} from './simulator2/simulator2.component';
 import {DragulaModule} from 'ng2-dragula/ng2-dragula';
 import 'dragula/dist/dragula.css';
 
@@ -24,6 +25,7 @@ import 'dragula/dist/dragula.css';
             { path: 'home', component: HomeComponent },
             { path: 'about', component: AboutComponent },
             { path: 'simulator', component: SimulatorComponent },
+            { path: 'simulator2', component: Simulator2Component },
             { path: '**', component: PageNotFoundComponent },
 
         ])
@@ -35,6 +37,7 @@ import 'dragula/dist/dragula.css';
         AboutComponent,
         PageNotFoundComponent,
         SimulatorComponent,
+        Simulator2Component
     ],
     bootstrap: [ AppComponent ]
 })

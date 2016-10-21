@@ -1,0 +1,17 @@
+.margin-to-top{
+    margin: 15px;
+}
+.button-style{
+    float: right;
+    padding-top: 0px;
+    padding-right: 40px;
+    padding-bottom: 50px;
+}
+.grid-background{
+    margin: 5px;
+    background-size: 20px 20px;
+    background-image: linear-gradient(to right, #e7e7e7 1px, transparent 1px), linear-gradient(to bottom, #e7e7e7 1px, transparent 1px);
+}
+.btn-primary{
+    font-size: 20px;
+}

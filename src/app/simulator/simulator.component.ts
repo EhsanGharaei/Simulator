@@ -36,9 +36,9 @@ export class SimulatorComponent {
     }
 
     ngAfterViewInit() {
-        $('#canvasInAPerfectWorld').click(function () {
-            alert("The paragraph was clicked.");
-        });
+
+
+
     }
 
 }
