@@ -4,16 +4,14 @@
 import { Component } from '@angular/core';
 
 
-
 @Component({
     selector: 'my-simulator2',
-    templateUrl: './simulator2.component.html',
-    styleUrls: ['./simulator2.component.css']
+    templateUrl: 'simulator.component.html',
+    styleUrls: ['simulator.component.css']
 })
-export class Simulator2Component {
+export class SimulatorComponent {
 
     ngOnInit(){
-        console.log("this executes first");
         if(!window.location.hash) {
             window.location = window.location + '#loaded';
             window.location.reload();
