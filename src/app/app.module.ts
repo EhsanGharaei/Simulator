@@ -24,7 +24,7 @@ import 'dragula/dist/dragula.css';
             { path: '', component: HomeComponent },
             { path: 'home', component: HomeComponent },
             { path: 'about', component: AboutComponent },
-            { path: 'simulator', component: SimulatorComponent },
+            //{ path: 'simulator', component: SimulatorComponent },
             { path: 'simulator2', component: Simulator2Component },
             { path: '**', component: PageNotFoundComponent },
 
@@ -36,7 +36,7 @@ import 'dragula/dist/dragula.css';
         HomeComponent,
         AboutComponent,
         PageNotFoundComponent,
-        SimulatorComponent,
+        //SimulatorComponent,
         Simulator2Component
     ],
     bootstrap: [ AppComponent ]

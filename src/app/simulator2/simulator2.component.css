@@ -3,8 +3,8 @@
 }
 .button-style{
     float: right;
-    padding-top: 0px;
-    padding-right: 40px;
+    padding-top: 20px;
+    padding-right: 0px;
     padding-bottom: 50px;
 }
 .grid-background{
@@ -14,4 +14,8 @@
 }
 .btn-primary{
     font-size: 20px;
+}
+.sim-middle-style{
+    width: 900px;
+    margin: auto;
 }

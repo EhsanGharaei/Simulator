@@ -4,6 +4,7 @@
 import { Component } from '@angular/core';
 
 
+
 @Component({
     selector: 'my-simulator2',
     templateUrl: './simulator2.component.html',
@@ -11,9 +12,15 @@ import { Component } from '@angular/core';
 })
 export class Simulator2Component {
 
+    ngOnInit(){
+        console.log("this executes first");
+        if(!window.location.hash) {
+            window.location = window.location + '#loaded';
+            window.location.reload();
+        }
+    }
+
     ngAfterViewInit() {
-
-
 
     }
 
