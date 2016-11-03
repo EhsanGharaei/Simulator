@@ -1,3 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>public/js/simcirjs/simcir.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/simcir.html">simcir</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: public/js/simcirjs/simcir.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
 //
 // SimcirJS
 //
@@ -28,20 +110,20 @@ var simcir = function($) {
    */
   var createSVGElement = function(tagName) {
     return $(document.createElementNS(
-        'http://www.w3.org/2000/svg', tagName) );
+        &#x27;http://www.w3.org/2000/svg&#x27;, tagName) );
   };
   /**
    * It creates SVG.
    * Input: w,h
    *
    * @method createSVG
-   * @return {function} Returns createSVGElement('svg').attr({})
+   * @return {function} Returns createSVGElement(&#x27;svg&#x27;).attr({})
    */
   var createSVG = function(w, h) {
-    return createSVGElement('svg').attr({
-      version: '1.1',
+    return createSVGElement(&#x27;svg&#x27;).attr({
+      version: &#x27;1.1&#x27;,
       width: w, height: h,
-      viewBox: '0 0 ' + w + ' ' + h
+      viewBox: &#x27;0 0 &#x27; + w + &#x27; &#x27; + h
     });
   };
   /**
@@ -52,31 +134,31 @@ var simcir = function($) {
    */
   var graphics = function($target) {
     var attr = {};
-    var buf = '';
+    var buf = &#x27;&#x27;;
     var moveTo = function(x, y) {
-      buf += ' M ' + x + ' ' + y;
+      buf += &#x27; M &#x27; + x + &#x27; &#x27; + y;
     };
     var lineTo = function(x, y) {
-      buf += ' L ' + x + ' ' + y;
+      buf += &#x27; L &#x27; + x + &#x27; &#x27; + y;
     };
     var curveTo = function(x1, y1, x, y) {
-      buf += ' Q ' + x1 + ' ' + y1 + ' ' + x + ' ' + y;
+      buf += &#x27; Q &#x27; + x1 + &#x27; &#x27; + y1 + &#x27; &#x27; + x + &#x27; &#x27; + y;
     };
     var closePath = function(close) {
       if (close) {
         // really close path.
-        buf += ' Z';
+        buf += &#x27; Z&#x27;;
       }
-      $target.append(createSVGElement('path').
-          attr('d', buf).attr(attr) );
-      buf = '';
+      $target.append(createSVGElement(&#x27;path&#x27;).
+          attr(&#x27;d&#x27;, buf).attr(attr) );
+      buf = &#x27;&#x27;;
     };
     var drawRect = function(x, y, width, height) {
-      $target.append(createSVGElement('rect').
+      $target.append(createSVGElement(&#x27;rect&#x27;).
           attr({x: x, y: y, width: width, height: height}).attr(attr) );
     };
     var drawCircle = function(x, y, r) {
-      $target.append(createSVGElement('circle').
+      $target.append(createSVGElement(&#x27;circle&#x27;).
           attr({cx: x, cy: y, r: r}).attr(attr) );
     };
     return {
@@ -96,7 +178,7 @@ var simcir = function($) {
    * @return {function} Returns callback on each classnames of an attribute
    */
   var eachClass = function($o, f) {
-    var className = $o.attr('class');
+    var className = $o.attr(&#x27;class&#x27;);
     if (className) {
       $.each(className.split(/\s+/g), f);
     }
@@ -108,18 +190,18 @@ var simcir = function($) {
    * @return {function} Returns $o
    */
   var addClass = function($o, className, remove) {
-    var newClass = '';
+    var newClass = &#x27;&#x27;;
     eachClass($o, function(i, c) {
-      if (!(remove && c == className) ) {
-        newClass += '\u0020';
+      if (!(remove &amp;&amp; c == className) ) {
+        newClass += &#x27;\u0020&#x27;;
         newClass += c;
       }
     });
     if (!remove) {
-      newClass += '\u0020';
+      newClass += &#x27;\u0020&#x27;;
       newClass += className;
     }
-    $o.attr('class', newClass);
+    $o.attr(&#x27;class&#x27;, newClass);
     return $o;
   };
   /**
@@ -153,20 +235,20 @@ var simcir = function($) {
    * @return {variables} Returns x,y,rotate
    */
   var transform = function() {
-    var attrX = 'simcir-transform-x';
-    var attrY = 'simcir-transform-y';
-    var attrRotate = 'simcir-transform-rotate';
+    var attrX = &#x27;simcir-transform-x&#x27;;
+    var attrY = &#x27;simcir-transform-y&#x27;;
+    var attrRotate = &#x27;simcir-transform-rotate&#x27;;
     var num = function($o, k) {
       var v = $o.attr(k);
       return v? +v : 0;
     };
     return function($o, x, y, rotate) {
-      if (arguments.length >= 3) {
-        var transform = 'translate(' + x + ' ' + y + ')';
+      if (arguments.length &gt;= 3) {
+        var transform = &#x27;translate(&#x27; + x + &#x27; &#x27; + y + &#x27;)&#x27;;
         if (rotate) {
-          transform += ' rotate(' + rotate + ')';
+          transform += &#x27; rotate(&#x27; + rotate + &#x27;)&#x27;;
         }
-        $o.attr('transform', transform);
+        $o.attr(&#x27;transform&#x27;, transform);
         $o.attr(attrX, x);
         $o.attr(attrY, y);
         $o.attr(attrRotate, rotate);
@@ -185,7 +267,7 @@ var simcir = function($) {
   var offset = function($o) {
     var x = 0;
     var y = 0;
-    while ($o[0].nodeName != 'svg') {
+    while ($o[0].nodeName != &#x27;svg&#x27;) {
       var pos = transform($o);
       x += pos.x;
       y += pos.y;
@@ -194,16 +276,16 @@ var simcir = function($) {
     return {x: x, y: y};
   };
   /**
-   * set "pointer-events" css class value to "visiblePainted" if enable else 'none'.
+   * set &quot;pointer-events&quot; css class value to &quot;visiblePainted&quot; if enable else &#x27;none&#x27;.
    * Input: $o,enable
    * @method enableEvents
    * @return -
    */
   var enableEvents = function($o, enable) {
-    $o.css('pointer-events', enable? 'visiblePainted' : 'none');
+    $o.css(&#x27;pointer-events&#x27;, enable? &#x27;visiblePainted&#x27; : &#x27;none&#x27;);
   };
   /**
-   * set css '-webkit-user-select' value to 'none'.
+   * set css &#x27;-webkit-user-select&#x27; value to &#x27;none&#x27;.
    * Input: $o
    * @method disableSelection
    * @return -
@@ -211,7 +293,7 @@ var simcir = function($) {
   var disableSelection = function($o) {
     $o.each(function() {
       this.onselectstart = function() { return false; };
-    }).css('-webkit-user-select', 'none');
+    }).css(&#x27;-webkit-user-select&#x27;, &#x27;none&#x27;);
   };
   /**
    * ???????????
@@ -220,7 +302,7 @@ var simcir = function($) {
    * @return {function} ????
    */
   var controller = function() {
-    var id = 'controller';
+    var id = &#x27;controller&#x27;;
     return function($ui, controller) {
       if (arguments.length == 1) {
         return $.data($ui[0], id);
@@ -248,7 +330,7 @@ var simcir = function($) {
     var dispatchEvent = function() {
       var queue = _queue;
       _queue = null;
-      while (queue.length > 0) {
+      while (queue.length &gt; 0) {
         var e = queue.shift();
         e.target.trigger(e.type);
       }
@@ -258,7 +340,7 @@ var simcir = function($) {
     };
     var timerHandler = function() {
       var start = getTime();
-      while (_queue != null && getTime() - start < limit) {
+      while (_queue != null &amp;&amp; getTime() - start &lt; limit) {
         dispatchEvent();
       }
       window.setTimeout(timerHandler, 
@@ -288,9 +370,9 @@ var simcir = function($) {
    * @return {function} Returns createSVGElement to make an text element.
    */
   var createLabel = function(text) {
-    return createSVGElement('text').
+    return createSVGElement(&#x27;text&#x27;).
       text(text).
-      css('font-size', fontSize + 'px');
+      css(&#x27;font-size&#x27;, fontSize + &#x27;px&#x27;);
   };
   /**
    * creates node and its controller, input, output.
@@ -299,20 +381,20 @@ var simcir = function($) {
    * @return {element} Returns $node
    */
   var createNode = function(type, label, description, headless) {
-    var $node = createSVGElement('g').
-      attr('simcir-node-type', type);
+    var $node = createSVGElement(&#x27;g&#x27;).
+      attr(&#x27;simcir-node-type&#x27;, type);
     if (!headless) {
-      $node.attr('class', 'simcir-node');
+      $node.attr(&#x27;class&#x27;, &#x27;simcir-node&#x27;);
     }
     var node = createNodeController({
       $ui: $node, type: type, label: label,
       description: description, headless: headless});
-    if (type == 'in') {
+    if (type == &#x27;in&#x27;) {
       controller($node, createInputNodeController(node) );
-    } else if (type == 'out') {
+    } else if (type == &#x27;out&#x27;) {
       controller($node, createOutputNodeController(node) );
     } else {
-      throw 'unknown type:' + type;
+      throw &#x27;unknown type:&#x27; + type;
     }
     return $node;
   };
@@ -323,8 +405,8 @@ var simcir = function($) {
    * @return {boolean} Returns true or false
    */
   var isActiveNode = function($o) {
-    return $o.closest('.simcir-node').length == 1 &&
-      $o.closest('.simcir-toolbox').length == 0;
+    return $o.closest(&#x27;.simcir-node&#x27;).length == 1 &amp;&amp;
+      $o.closest(&#x27;.simcir-toolbox&#x27;).length == 0;
   };
   /**
    * controls everything about a node, setvalue, post event, get value, append label,
@@ -336,11 +418,11 @@ var simcir = function($) {
   var createNodeController = function(node) {
     var _value = null;
     var setValue = function(value, force) {
-      if (_value === value && !force) {
+      if (_value === value &amp;&amp; !force) {
         return;
       }
       _value = value;
-      eventQueue.postEvent({target: node.$ui, type: 'nodeValueChange'});
+      eventQueue.postEvent({target: node.$ui, type: &#x27;nodeValueChange&#x27;});
     };
     var getValue = function() {
       return _value;
@@ -348,55 +430,55 @@ var simcir = function($) {
 
     if (!node.headless) {
 
-      node.$ui.attr('class', 'simcir-node simcir-node-type-' + node.type);
+      node.$ui.attr(&#x27;class&#x27;, &#x27;simcir-node simcir-node-type-&#x27; + node.type);
 
-      var $circle = createSVGElement('circle').
+      var $circle = createSVGElement(&#x27;circle&#x27;).
         attr({cx: 0, cy: 0, r: 4});
-      node.$ui.on('mouseover', function(event) {
+      node.$ui.on(&#x27;mouseover&#x27;, function(event) {
         if (isActiveNode(node.$ui) ) {
-          addClass(node.$ui, 'simcir-node-hover');
+          addClass(node.$ui, &#x27;simcir-node-hover&#x27;);
         }
       });
-      node.$ui.on('mouseout', function(event) {
+      node.$ui.on(&#x27;mouseout&#x27;, function(event) {
         if (isActiveNode(node.$ui) ) {
-          removeClass(node.$ui, 'simcir-node-hover');
+          removeClass(node.$ui, &#x27;simcir-node-hover&#x27;);
         }
       });
       node.$ui.append($circle);
       var appendLabel = function(text, align) {
         var $label = createLabel(text).
-          attr('class', 'simcir-node-label');
+          attr(&#x27;class&#x27;, &#x27;simcir-node-label&#x27;);
         enableEvents($label, false);
-        if (align == 'right') {
-          $label.attr('text-anchor', 'start').
-            attr('x', 6).
-            attr('y', fontSize / 2);
-        } else if (align == 'left') {
-          $label.attr('text-anchor', 'end').
-            attr('x', -6).
-            attr('y', fontSize / 2);
+        if (align == &#x27;right&#x27;) {
+          $label.attr(&#x27;text-anchor&#x27;, &#x27;start&#x27;).
+            attr(&#x27;x&#x27;, 6).
+            attr(&#x27;y&#x27;, fontSize / 2);
+        } else if (align == &#x27;left&#x27;) {
+          $label.attr(&#x27;text-anchor&#x27;, &#x27;end&#x27;).
+            attr(&#x27;x&#x27;, -6).
+            attr(&#x27;y&#x27;, fontSize / 2);
         }
         node.$ui.append($label);
       };
       if (node.label) {
-        if (node.type == 'in') {
-          appendLabel(node.label, 'right');
-        } else if (node.type == 'out') {
-          appendLabel(node.label, 'left');
+        if (node.type == &#x27;in&#x27;) {
+          appendLabel(node.label, &#x27;right&#x27;);
+        } else if (node.type == &#x27;out&#x27;) {
+          appendLabel(node.label, &#x27;left&#x27;);
         }
       }
       if (node.description) {
-        if (node.type == 'in') {
-          appendLabel(node.description, 'left');
-        } else if (node.type == 'out') {
-          appendLabel(node.description, 'right');
+        if (node.type == &#x27;in&#x27;) {
+          appendLabel(node.description, &#x27;left&#x27;);
+        } else if (node.type == &#x27;out&#x27;) {
+          appendLabel(node.description, &#x27;right&#x27;);
         }
       }
-      node.$ui.on('nodeValueChange', function(event) {
+      node.$ui.on(&#x27;nodeValueChange&#x27;, function(event) {
         if (_value != null) {
-          addClass(node.$ui, 'simcir-node-hot');
+          addClass(node.$ui, &#x27;simcir-node-hot&#x27;);
         } else {
-          removeClass(node.$ui, 'simcir-node-hot');
+          removeClass(node.$ui, &#x27;simcir-node-hot&#x27;);
         }
       });
     }
@@ -450,7 +532,7 @@ var simcir = function($) {
     };
     var disconnectFrom = function(inNode) {
       if (inNode.getOutput() != node) {
-        throw 'not connected.';
+        throw &#x27;not connected.&#x27;;
       }
       inNode.setOutput(null);
       inNode.setValue(null, true);
@@ -476,9 +558,9 @@ var simcir = function($) {
    */
   var createDevice = function(deviceDef, headless) {
     headless = headless || false;
-    var $dev = createSVGElement('g');
+    var $dev = createSVGElement(&#x27;g&#x27;);
     if (!headless) {
-      $dev.attr('class', 'simcir-device');
+      $dev.attr(&#x27;class&#x27;, &#x27;simcir-device&#x27;);
     }
     controller($dev, createDeviceController(
         {$ui: $dev, deviceDef: deviceDef,
@@ -503,9 +585,9 @@ var simcir = function($) {
     var inputs = [];
     var outputs = [];
     var addInput = function(label, description) {
-      var $node = createNode('in', label, description, device.headless);
-      $node.on('nodeValueChange', function(event) {
-        device.$ui.trigger('inputValueChange');
+      var $node = createNode(&#x27;in&#x27;, label, description, device.headless);
+      $node.on(&#x27;nodeValueChange&#x27;, function(event) {
+        device.$ui.trigger(&#x27;inputValueChange&#x27;);
       });
       if (!device.headless) {
         device.$ui.append($node);
@@ -515,7 +597,7 @@ var simcir = function($) {
       return node;
     };
     var addOutput = function(label, description) {
-      var $node = createNode('out', label, description, device.headless);
+      var $node = createNode(&#x27;out&#x27;, label, description, device.headless);
       if (!device.headless) {
         device.$ui.append($node);
       }
@@ -546,7 +628,7 @@ var simcir = function($) {
     var selected = false;
     var setSelected = function(value) {
       selected = value;
-      device.$ui.trigger('deviceSelect');
+      device.$ui.trigger(&#x27;deviceSelect&#x27;);
     };
     var isSelected = function() {
       return selected;
@@ -554,13 +636,13 @@ var simcir = function($) {
 
     var label = device.deviceDef.label;
     var defaultLabel = device.deviceDef.type;
-    if (typeof label == 'undefined') {
+    if (typeof label == &#x27;undefined&#x27;) {
       label = defaultLabel;
     }
     var setLabel = function(value) {
-      value = value.replace(/^\s+|\s+$/g, '');
+      value = value.replace(/^\s+|\s+$/g, &#x27;&#x27;);
       label = value || defaultLabel;
-      device.$ui.trigger('deviceLabelChange');
+      device.$ui.trigger(&#x27;deviceLabelChange&#x27;);
     };
     var getLabel = function() {
       return label;
@@ -580,8 +662,7 @@ var simcir = function($) {
       var w = size.width;
       var h = size.height;
 
-
-      device.$ui.children('.simcir-device-body').
+      device.$ui.children(&#x27;.simcir-device-body&#x27;).
         attr({x: 0, y: 0, width: w, height: h});
 
       var pitch = device.halfPitch? unit / 2 : unit;
@@ -591,60 +672,45 @@ var simcir = function($) {
           transform(node.$ui, x, pitch * i + offset);
         });
       };
-      if(device.deviceDef.type =='Power line') {
-        layoutNodes(getInputs(), 0);
-        layoutNodes(getOutputs(), 500);
-      }
-      else{
-        layoutNodes(getInputs(), 0);
-        layoutNodes(getOutputs(), w);
-      }
+      layoutNodes(getInputs(), 0);
+      layoutNodes(getOutputs(), w);
 
-
-      device.$ui.children('.simcir-device-label').
+      device.$ui.children(&#x27;.simcir-device-label&#x27;).
         attr({x: w / 2, y: h + fontSize});
     };
 
     var createUI = function() {
 
-      device.$ui.attr('class', 'simcir-device');
-      device.$ui.on('deviceSelect', function() {
+      device.$ui.attr(&#x27;class&#x27;, &#x27;simcir-device&#x27;);
+      device.$ui.on(&#x27;deviceSelect&#x27;, function() {
         if (selected) {
-          addClass($(this), 'simcir-device-selected');
+          addClass($(this), &#x27;simcir-device-selected&#x27;);
         } else {
-          removeClass($(this), 'simcir-device-selected');
+          removeClass($(this), &#x27;simcir-device-selected&#x27;);
         }
       });
-      //--------added by ehsangharaei-------------------
-      if(device.deviceDef.type =='Power line') {
-        var size = device.getSize();
-        var w = size.width;
-        var h = size.height;
-        var powerLineLength = 500;
 
-        var $body = createSVGElement('path').attr('class', 'simcir-device-body').attr('class', 'power-line').attr('d', 'M '+0+' '+w/2+' L '+powerLineLength+' '+w/2 );
-      }
-      else{
-        var $body = createSVGElement('rect').attr('class', 'simcir-device-body').attr('rx', 2).attr('ry', 2);
-      }
-
+      var $body = createSVGElement(&#x27;rect&#x27;).
+        attr(&#x27;class&#x27;, &#x27;simcir-device-body&#x27;).
+        attr(&#x27;rx&#x27;, 2).attr(&#x27;ry&#x27;, 2);
       device.$ui.prepend($body);
 
-      var $label = createLabel(label).attr('class', 'simcir-device-label').attr('text-anchor', 'middle');
-      device.$ui.on('deviceLabelChange', function () {
-        $label.text(getLabel());
+      var $label = createLabel(label).
+        attr(&#x27;class&#x27;, &#x27;simcir-device-label&#x27;).
+        attr(&#x27;text-anchor&#x27;, &#x27;middle&#x27;);
+      device.$ui.on(&#x27;deviceLabelChange&#x27;, function() {
+        $label.text(getLabel() );
       });
-
 
       var label_dblClickHandler = function() {
         // open library,
         event.preventDefault();
         event.stopPropagation();
-        var title = 'Enter device name ';
-        var $labelEditor = $('<input type="text"/>').
-          addClass('simcir-label-editor').
+        var title = &#x27;Enter device name &#x27;;
+        var $labelEditor = $(&#x27;&lt;input type=&quot;text&quot;/&gt;&#x27;).
+          addClass(&#x27;simcir-label-editor&#x27;).
           val($label.text() ).
-          on('keydown', function(event) {
+          on(&#x27;keydown&#x27;, function(event) {
             if (event.keyCode == 13) {
               // ENTER
               setLabel($(this).val() );
@@ -654,23 +720,22 @@ var simcir = function($) {
               $dlg.remove();
             }
           } );
-        var $placeHolder = $('<div></div>').
+        var $placeHolder = $(&#x27;&lt;div&gt;&lt;/div&gt;&#x27;).
           append($labelEditor);
         var $dlg = showDialog(title, $placeHolder);
         $labelEditor.focus();
       };
-      device.$ui.on('deviceAdd', function() {
-        $label.on('dblclick', label_dblClickHandler);
+      device.$ui.on(&#x27;deviceAdd&#x27;, function() {
+        $label.on(&#x27;dblclick&#x27;, label_dblClickHandler);
       } );
-      device.$ui.on('deviceRemove', function() {
-        $label.off('dblclick', label_dblClickHandler);
+      device.$ui.on(&#x27;deviceRemove&#x27;, function() {
+        $label.off(&#x27;dblclick&#x27;, label_dblClickHandler);
       } );
       device.$ui.append($label);
 
       layoutUI();
 
     };
-
 
     return $.extend(device, {
       addInput: addInput,
@@ -684,7 +749,6 @@ var simcir = function($) {
       halfPitch: false,
       getSize: getSize,
       createUI: createUI,
-      createUIForPowerLine:createUIForPowerLine,
       layoutUI: layoutUI
     });
   };
@@ -692,12 +756,12 @@ var simcir = function($) {
    * creates connector.
    * Input: x1, y1, x2, y2
    * @method createConnector
-   * @return {function} createSVGElement('path')
+   * @return {function} createSVGElement(&#x27;path&#x27;)
    */
   var createConnector = function(x1, y1, x2, y2) {
-    return createSVGElement('path').
-      attr('d', 'M ' + x1 + ' ' + y1 + ' L ' + x2 + ' ' + y2).
-      attr('class', 'simcir-connector');
+    return createSVGElement(&#x27;path&#x27;).
+      attr(&#x27;d&#x27;, &#x27;M &#x27; + x1 + &#x27; &#x27; + y1 + &#x27; L &#x27; + x2 + &#x27; &#x27; + y2).
+      attr(&#x27;class&#x27;, &#x27;simcir-connector&#x27;);
   };
   /**
    * creates connector.
@@ -706,11 +770,11 @@ var simcir = function($) {
    * @return -
    */
   var connect = function($node1, $node2) {
-    var type1 = $node1.attr('simcir-node-type');
-    var type2 = $node2.attr('simcir-node-type');
-    if (type1 == 'in' && type2 == 'out') {
+    var type1 = $node1.attr(&#x27;simcir-node-type&#x27;);
+    var type2 = $node2.attr(&#x27;simcir-node-type&#x27;);
+    if (type1 == &#x27;in&#x27; &amp;&amp; type2 == &#x27;out&#x27;) {
       controller($node2).connectTo(controller($node1) );
-    } else if (type1 == 'out' && type2 == 'in') {
+    } else if (type1 == &#x27;out&#x27; &amp;&amp; type2 == &#x27;in&#x27;) {
       controller($node1).connectTo(controller($node2) );
     }
   };
@@ -725,12 +789,12 @@ var simcir = function($) {
     var $devMap = {};
     var getNode = function(path) {
       if (!path.match(/^(\w+)\.(in|out)([0-9]+)$/g) ) {
-        throw 'unknown path:' + path;
+        throw &#x27;unknown path:&#x27; + path;
       }
       var devId = RegExp.$1;
       var type = RegExp.$2;
       var index = +RegExp.$3;
-      return (type == 'in')?
+      return (type == &#x27;in&#x27;)?
         controller($devMap[devId]).getInputs()[index] :
         controller($devMap[devId]).getOutputs()[index];
     };
@@ -743,7 +807,7 @@ var simcir = function($) {
     $.each(data.connectors, function(i, conn) {
       var nodeFrom = getNode(conn.from);
       var nodeTo = getNode(conn.to);
-      if (nodeFrom && nodeTo) {
+      if (nodeFrom &amp;&amp; nodeTo) {
         connect(nodeFrom.$ui, nodeTo.$ui);
       }
     });
@@ -760,10 +824,10 @@ var simcir = function($) {
       var r = 16;
       var pad = 4;
       var $btn = createSVG(r, r).
-        attr('class', 'simcir-dialog-close-button');
+        attr(&#x27;class&#x27;, &#x27;simcir-dialog-close-button&#x27;);
       var g = graphics($btn);
       g.drawRect(0, 0, r, r);
-      g.attr['class'] = 'simcir-dialog-close-button-symbol';
+      g.attr[&#x27;class&#x27;] = &#x27;simcir-dialog-close-button-symbol&#x27;;
       g.moveTo(pad, pad);
       g.lineTo(r - pad, r - pad);
       g.closePath();
@@ -772,36 +836,36 @@ var simcir = function($) {
       g.closePath();
       return $btn;
     }();
-    var $title = $('<div></div>').
-      addClass('simcir-dialog-title').
+    var $title = $(&#x27;&lt;div&gt;&lt;/div&gt;&#x27;).
+      addClass(&#x27;simcir-dialog-title&#x27;).
       text(title).
-      css('cursor', 'default').
-      on('mousedown', function(event) {
+      css(&#x27;cursor&#x27;, &#x27;default&#x27;).
+      on(&#x27;mousedown&#x27;, function(event) {
       event.preventDefault();
     });
-    var $dlg = $('<div></div>').
-      addClass('simcir-dialog').
-      css({position:'absolute'}).
-      append($title.css('float', 'left') ).
-      append($closeButton.css('float', 'right') ).
-      append($('<br/>').css('clear', 'both') ).
+    var $dlg = $(&#x27;&lt;div&gt;&lt;/div&gt;&#x27;).
+      addClass(&#x27;simcir-dialog&#x27;).
+      css({position:&#x27;absolute&#x27;}).
+      append($title.css(&#x27;float&#x27;, &#x27;left&#x27;) ).
+      append($closeButton.css(&#x27;float&#x27;, &#x27;right&#x27;) ).
+      append($(&#x27;&lt;br/&gt;&#x27;).css(&#x27;clear&#x27;, &#x27;both&#x27;) ).
       append($content);
-    $('BODY').append($dlg);
+    $(&#x27;BODY&#x27;).append($dlg);
     var dragPoint = null;
     var dlg_mouseDownHandler = function(event) {
-      if (!$(event.target).hasClass('simcir-dialog') &&
-          !$(event.target).hasClass('simcir-dialog-title') ) {
+      if (!$(event.target).hasClass(&#x27;simcir-dialog&#x27;) &amp;&amp;
+          !$(event.target).hasClass(&#x27;simcir-dialog-title&#x27;) ) {
         return;
       }
       event.preventDefault();
       $dlg.detach();
-      $('BODY').append($dlg);
+      $(&#x27;BODY&#x27;).append($dlg);
       var off = $dlg.offset();
       dragPoint = {
         x: event.pageX - off.left,
         y: event.pageY - off.top};
-      $(document).on('mousemove', dlg_mouseMoveHandler);
-      $(document).on('mouseup', dlg_mouseUpHandler);
+      $(document).on(&#x27;mousemove&#x27;, dlg_mouseMoveHandler);
+      $(document).on(&#x27;mouseup&#x27;, dlg_mouseUpHandler);
     };
     var dlg_mouseMoveHandler = function(event) {
       moveTo(
@@ -809,11 +873,11 @@ var simcir = function($) {
           event.pageY - dragPoint.y);
     };
     var dlg_mouseUpHandler = function(event) {
-      $(document).off('mousemove', dlg_mouseMoveHandler);
-      $(document).off('mouseup', dlg_mouseUpHandler);
+      $(document).off(&#x27;mousemove&#x27;, dlg_mouseMoveHandler);
+      $(document).off(&#x27;mouseup&#x27;, dlg_mouseUpHandler);
     };
-    $dlg.on('mousedown', dlg_mouseDownHandler);
-    $closeButton.on('mousedown', function() {
+    $dlg.on(&#x27;mousedown&#x27;, dlg_mouseDownHandler);
+    $closeButton.on(&#x27;mousedown&#x27;, function() {
       $dlg.remove();
     });
     var w = $dlg.width();
@@ -823,7 +887,7 @@ var simcir = function($) {
     var x = (cw - w) / 2 + $(document).scrollLeft();
     var y = (ch - h) / 2 + $(document).scrollTop();
     var moveTo = function(x, y) {
-      $dlg.css({left: x + 'px', top: y + 'px'});
+      $dlg.css({left: x + &#x27;px&#x27;, top: y + &#x27;px&#x27;});
     };
     moveTo(x, y);
     return $dlg;
@@ -840,7 +904,7 @@ var simcir = function($) {
       var $ports = [];
       $.each($devs, function(i, $dev) {
         var deviceDef = controller($dev).deviceDef;
-        if (deviceDef.type == 'In' || deviceDef.type == 'Out') {
+        if (deviceDef.type == &#x27;In&#x27; || deviceDef.type == &#x27;Out&#x27;) {
           $ports.push($dev);
         }
       });
@@ -850,19 +914,19 @@ var simcir = function($) {
         var x2 = controller($p2).deviceDef.x;
         var y2 = controller($p2).deviceDef.y;
         if (x1 == x2) {
-          return (y1 < y2)? -1 : 1;
+          return (y1 &lt; y2)? -1 : 1;
         }
-        return (x1 < x2)? -1 : 1;
+        return (x1 &lt; x2)? -1 : 1;
       });
       var getDesc = function(port) {
-        return port? port.description : '';
+        return port? port.description : &#x27;&#x27;;
       };
       $.each($ports, function(i, $port) {
         var port = controller($port);
         var portDef = port.deviceDef;
         var inPort;
         var outPort;
-        if (portDef.type == 'In') {
+        if (portDef.type == &#x27;In&#x27;) {
           outPort = port.getOutputs()[0];
           inPort = device.addInput(portDef.label,
               getDesc(outPort.getInputs()[0]) );
@@ -871,7 +935,7 @@ var simcir = function($) {
           if (inNode.getOutput() != null) {
             inNode.getOutput().disconnectFrom(inNode);
           }
-        } else if (portDef.type == 'Out') {
+        } else if (portDef.type == &#x27;Out&#x27;) {
           inPort = port.getInputs()[0];
           outPort = device.addOutput(portDef.label,
               getDesc(inPort.getOutput() ) );
@@ -883,7 +947,7 @@ var simcir = function($) {
             }
           } );
         }
-        inPort.$ui.on('nodeValueChange', function() {
+        inPort.$ui.on(&#x27;nodeValueChange&#x27;, function() {
           outPort.setValue(inPort.getValue() );
         });
       });
@@ -892,12 +956,12 @@ var simcir = function($) {
         var size = super_getSize();
         return {width: unit * 4, height: size.height};
       };
-      device.$ui.on('dblclick', function(event) {
+      device.$ui.on(&#x27;dblclick&#x27;, function(event) {
         // open library,
         event.preventDefault();
         event.stopPropagation();
         showDialog(device.deviceDef.label || device.deviceDef.type,
-            setupSimcir($('<div></div>'), data) );
+            setupSimcir($(&#x27;&lt;div&gt;&lt;/div&gt;&#x27;), data) );
       });
     };
   };
@@ -920,12 +984,11 @@ var simcir = function($) {
    * @return -
    */
   var registerDevice = function(type, factory) {
-    if (typeof factory == 'object') {
+    if (typeof factory == &#x27;object&#x27;) {
       factory = createDeviceRefFactory(factory);
     }
     factories[type] = factory;
-    if(type!='Power line')
-      defaultToolbox.push({type: type});
+    defaultToolbox.push({type: type});
   };
   /**
    * Create scroll bar and controls all of its actions.
@@ -943,20 +1006,20 @@ var simcir = function($) {
     var _width = 0;
     var _height = 0;
 
-    var $body = createSVGElement('rect');
-    var $bar = createSVGElement('g').
-      append(createSVGElement('rect') ).
-      attr('class', 'simcir-scrollbar-bar');
-    var $scrollbar = createSVGElement('g').
-      attr('class', 'simcir-scrollbar').
+    var $body = createSVGElement(&#x27;rect&#x27;);
+    var $bar = createSVGElement(&#x27;g&#x27;).
+      append(createSVGElement(&#x27;rect&#x27;) ).
+      attr(&#x27;class&#x27;, &#x27;simcir-scrollbar-bar&#x27;);
+    var $scrollbar = createSVGElement(&#x27;g&#x27;).
+      attr(&#x27;class&#x27;, &#x27;simcir-scrollbar&#x27;).
       append($body).append($bar).
-      on('unitup', function(event) {
+      on(&#x27;unitup&#x27;, function(event) {
         setValue(_value - unit * 2);
-      }).on('unitdown', function(event) {
+      }).on(&#x27;unitdown&#x27;, function(event) {
         setValue(_value + unit * 2);
-      }).on('rollup', function(event) {
+      }).on(&#x27;rollup&#x27;, function(event) {
         setValue(_value - _barSize);
-      }).on('rolldown', function(event) {
+      }).on(&#x27;rolldown&#x27;, function(event) {
         setValue(_value + _barSize);
       });
 
@@ -968,8 +1031,8 @@ var simcir = function($) {
       dragPoint = {
           x: event.pageX - pos.x,
           y: event.pageY - pos.y};
-      $(document).on('mousemove', bar_mouseMoveHandler);
-      $(document).on('mouseup', bar_mouseUpHandler);
+      $(document).on(&#x27;mousemove&#x27;, bar_mouseMoveHandler);
+      $(document).on(&#x27;mouseup&#x27;, bar_mouseUpHandler);
     };
     var bar_mouseMoveHandler = function(event) {
       calc(function(unitSize) {
@@ -977,24 +1040,24 @@ var simcir = function($) {
       });
     };
     var bar_mouseUpHandler = function(event) {
-      $(document).off('mousemove', bar_mouseMoveHandler);
-      $(document).off('mouseup', bar_mouseUpHandler);
+      $(document).off(&#x27;mousemove&#x27;, bar_mouseMoveHandler);
+      $(document).off(&#x27;mouseup&#x27;, bar_mouseUpHandler);
     };
-    $bar.on('mousedown', bar_mouseDownHandler);
+    $bar.on(&#x27;mousedown&#x27;, bar_mouseDownHandler);
     var body_mouseDownHandler = function(event) {
       event.preventDefault();
       event.stopPropagation();
-      var off = $scrollbar.parents('svg').offset();
+      var off = $scrollbar.parents(&#x27;svg&#x27;).offset();
       var pos = transform($scrollbar);
       var y = event.pageY - off.top - pos.y;
       var barPos = transform($bar);
-      if (y < barPos.y) {
-        $scrollbar.trigger('rollup');
+      if (y &lt; barPos.y) {
+        $scrollbar.trigger(&#x27;rollup&#x27;);
       } else {
-        $scrollbar.trigger('rolldown');
+        $scrollbar.trigger(&#x27;rolldown&#x27;);
       }
     };
-    $body.on('mousedown', body_mouseDownHandler);
+    $body.on(&#x27;mousedown&#x27;, body_mouseDownHandler);
 
     var setSize = function(width, height) {
       _width = width;
@@ -1005,13 +1068,13 @@ var simcir = function($) {
 
       $body.attr({x: 0, y: 0, width: _width, height: _height});
 
-      var visible = _max - _min > _barSize;
-      $bar.css('display', visible? 'inline' : 'none');
+      var visible = _max - _min &gt; _barSize;
+      $bar.css(&#x27;display&#x27;, visible? &#x27;inline&#x27; : &#x27;none&#x27;);
       if (!visible) {
         return;
       }
       calc(function(unitSize) {
-        $bar.children('rect').
+        $bar.children(&#x27;rect&#x27;).
           attr({x: 0, y: 0, width: _width, height: _barSize * unitSize});
         transform($bar, 0, _value * unitSize);
       });
@@ -1031,7 +1094,7 @@ var simcir = function($) {
       _barSize = barSize;
       layout();
       if (changed) {
-        $scrollbar.trigger('scrollValueChange');
+        $scrollbar.trigger(&#x27;scrollValueChange&#x27;);
       }
     };
     var getValue = function() {
@@ -1053,7 +1116,7 @@ var simcir = function($) {
   var getUniqueId = function() {
     var uniqueIdCount = 0;
     return function() {
-      return 'simcir-id' + uniqueIdCount++;
+      return &#x27;simcir-id&#x27; + uniqueIdCount++;
     };
   }();
   /**
@@ -1065,11 +1128,13 @@ var simcir = function($) {
   var createWorkspace = function(data) {
 
     data = $.extend({
-      width: 900, //edited by ehsangharaei
-      height: 500, //edited by ehsangharaei
+      /*width: 400,
+      height: 200,*/
+      width: 900,
+      height: 500,
       showToolbox: true,
       toolbox: defaultToolbox,
-      devices: [{"type":"Power line","id":"dev0","x":100,"y":50,"label":"Power line"}],
+      devices: [],
       connectors: [],
     }, data);
 
@@ -1080,10 +1145,10 @@ var simcir = function($) {
 
     var $workspace = createSVG(
         workspaceWidth, workspaceHeight).
-      attr('class', 'simcir-workspace');
+      attr(&#x27;class&#x27;, &#x27;simcir-workspace&#x27;);
     disableSelection($workspace);
 
-    var $defs = createSVGElement('defs');
+    var $defs = createSVGElement(&#x27;defs&#x27;);
     $workspace.append($defs);
 
     !function() {
@@ -1094,45 +1159,45 @@ var simcir = function($) {
       var w = workspaceWidth - toolboxWidth;
       var h = workspaceHeight;
 
-      $defs.append(createSVGElement('pattern').
+      $defs.append(createSVGElement(&#x27;pattern&#x27;).
           attr({id: patId, x: 0, y: 0,
             width: pitch / w, height: pitch / h}).append(
-            createSVGElement('rect').attr('class', 'simcir-pin-hole').
+            createSVGElement(&#x27;rect&#x27;).attr(&#x27;class&#x27;, &#x27;simcir-pin-hole&#x27;).
             attr({x: 0, y: 0, width: 1, height: 1}) ) );
 
-      $workspace.append(createSVGElement('rect').
+      $workspace.append(createSVGElement(&#x27;rect&#x27;).
           attr({x: toolboxWidth, y: 0, width: w, height: h}).
-          css({fill: 'url(#' + patId + ')'}) );
+          css({fill: &#x27;url(#&#x27; + patId + &#x27;)&#x27;}) );
     }();
 
-    var $toolboxDevicePane = createSVGElement('g');
+    var $toolboxDevicePane = createSVGElement(&#x27;g&#x27;);
     var $scrollbar = createScrollbar();
-    $scrollbar.on('scrollValueChange', function(event) {
+    $scrollbar.on(&#x27;scrollValueChange&#x27;, function(event) {
       transform($toolboxDevicePane, 0,
           -controller($scrollbar).getValue() );
     });
     controller($scrollbar).setSize(barWidth, workspaceHeight);
     transform($scrollbar, toolboxWidth - barWidth, 0);
-    var $toolboxPane = createSVGElement('g').
-      attr('class', 'simcir-toolbox').
-      append(createSVGElement('rect').
+    var $toolboxPane = createSVGElement(&#x27;g&#x27;).
+      attr(&#x27;class&#x27;, &#x27;simcir-toolbox&#x27;).
+      append(createSVGElement(&#x27;rect&#x27;).
         attr({x: 0, y: 0,
           width: toolboxWidth,
           height: workspaceHeight}) ).
       append($toolboxDevicePane).
-      append($scrollbar).on('wheel', function(event) {
+      append($scrollbar).on(&#x27;wheel&#x27;, function(event) {
         event.preventDefault();
-        if (event.originalEvent.deltaY < 0) {
-          $scrollbar.trigger('unitup');
-        } else if (event.originalEvent.deltaY > 0) {
-          $scrollbar.trigger('unitdown');
+        if (event.originalEvent.deltaY &lt; 0) {
+          $scrollbar.trigger(&#x27;unitup&#x27;);
+        } else if (event.originalEvent.deltaY &gt; 0) {
+          $scrollbar.trigger(&#x27;unitdown&#x27;);
         }
       });
 
-    var $devicePane = createSVGElement('g');
+    var $devicePane = createSVGElement(&#x27;g&#x27;);
     transform($devicePane, toolboxWidth, 0);
-    var $connectorPane = createSVGElement('g');
-    var $temporaryPane = createSVGElement('g');
+    var $connectorPane = createSVGElement(&#x27;g&#x27;);
+    var $temporaryPane = createSVGElement(&#x27;g&#x27;);
 
     enableEvents($connectorPane, false);
     enableEvents($temporaryPane, false);
@@ -1146,26 +1211,16 @@ var simcir = function($) {
 
     var addDevice = function($dev) {
       $devicePane.append($dev);
-      $dev.trigger('deviceAdd');
+      $dev.trigger(&#x27;deviceAdd&#x27;);
     };
 
     var removeDevice = function($dev) {
-      $dev.trigger('deviceRemove');
+      $dev.trigger(&#x27;deviceRemove&#x27;);
       // before remove, disconnect all
       controller($dev).disconnectAll();
       $dev.remove();
       updateConnectors();
     };
-
-    //---------added by ehsangharaei---------------
-    $(".power-line-add-button").click(function(){
-      var $dev=$devicePane.children('.simcir-device').find('.power-line').closest('.simcir-device');
-      $dev = createDevice(controller($dev).deviceDef);
-      $dev[0].firstChild.outerHTML=$dev[0].firstChild.outerHTML.replace("500", "300");
-      console.log($dev[0].firstChild.outerHTML);
-      adjustDevice($dev);
-      addDevice($dev);
-    });
 
     var disconnect = function($inNode) {
       var inNode = controller($inNode);
@@ -1177,7 +1232,7 @@ var simcir = function($) {
 
     var updateConnectors = function() {
       $connectorPane.children().remove();
-      $devicePane.children('.simcir-device').each(function() {
+      $devicePane.children(&#x27;.simcir-device&#x27;).each(function() {
         var device = controller($(this) );
         $.each(device.getInputs(), function(i, inNode) {
           if (inNode.getOutput() != null) {
@@ -1207,16 +1262,16 @@ var simcir = function($) {
 
       // renumber all id
       var devIdCount = 0;
-      $devicePane.children('.simcir-device').each(function() {
+      $devicePane.children(&#x27;.simcir-device&#x27;).each(function() {
         var $dev = $(this);
         var device = controller($dev);
-        var devId = 'dev' + devIdCount++;
+        var devId = &#x27;dev&#x27; + devIdCount++;
         device.id = devId;
         $.each(device.getInputs(), function(i, node) {
-          node.id = devId + '.in' + i;
+          node.id = devId + &#x27;.in&#x27; + i;
         });
         $.each(device.getOutputs(), function(i, node) {
-          node.id = devId + '.out' + i;
+          node.id = devId + &#x27;.out&#x27; + i;
         });
       });
 
@@ -1226,12 +1281,12 @@ var simcir = function($) {
       var clone = function(obj) {
         return JSON.parse(JSON.stringify(obj) );
       };
-      $toolboxDevicePane.children('.simcir-device').each(function() {
+      $toolboxDevicePane.children(&#x27;.simcir-device&#x27;).each(function() {
         var $dev = $(this);
         var device = controller($dev);
         toolbox.push(device.deviceDef);
       });
-      $devicePane.children('.simcir-device').each(function() {
+      $devicePane.children(&#x27;.simcir-device&#x27;).each(function() {
         var $dev = $(this);
         var device = controller($dev);
         $.each(device.getInputs(), function(i, inNode) {
@@ -1260,34 +1315,34 @@ var simcir = function($) {
 
       var data = getData();
 
-      var buf = '';
+      var buf = &#x27;&#x27;;
       var print = function(s) {
         buf += s;
       };
       var println = function(s) {
         print(s);
-        buf += '\r\n';
+        buf += &#x27;\r\n&#x27;;
       };
       var printArray = function(array) {
         $.each(array, function(i, item) {
-          println('    ' + JSON.stringify(item) +
-              (i + 1 < array.length? ',' : '') );
+          println(&#x27;    &#x27; + JSON.stringify(item) +
+              (i + 1 &lt; array.length? &#x27;,&#x27; : &#x27;&#x27;) );
         });
       };
-      println('{');
-      println('  "width":' + data.width + ',');
-      println('  "height":' + data.height + ',');
-      println('  "showToolbox":' + data.showToolbox + ',');
-      println('  "toolbox":[');
+      println(&#x27;{&#x27;);
+      println(&#x27;  &quot;width&quot;:&#x27; + data.width + &#x27;,&#x27;);
+      println(&#x27;  &quot;height&quot;:&#x27; + data.height + &#x27;,&#x27;);
+      println(&#x27;  &quot;showToolbox&quot;:&#x27; + data.showToolbox + &#x27;,&#x27;);
+      println(&#x27;  &quot;toolbox&quot;:[&#x27;);
       printArray(data.toolbox);
-      println('  ],');
-      println('  "devices":[');
+      println(&#x27;  ],&#x27;);
+      println(&#x27;  &quot;devices&quot;:[&#x27;);
       printArray(data.devices);
-      println('  ],');
-      println('  "connectors":[');
+      println(&#x27;  ],&#x27;);
+      println(&#x27;  &quot;connectors&quot;:[&#x27;);
       printArray(data.connectors);
-      println('  ]');
-      print('}');
+      println(&#x27;  ]&#x27;);
+      print(&#x27;}&#x27;);
       return buf;
     };
 
@@ -1310,10 +1365,10 @@ var simcir = function($) {
     };
 
     var beginConnect = function(event, $target) {
-      var $srcNode = $target.closest('.simcir-node');
+      var $srcNode = $target.closest(&#x27;.simcir-node&#x27;);
       var off = $workspace.offset();
       var pos = offset($srcNode);
-      if ($srcNode.attr('simcir-node-type') == 'in') {
+      if ($srcNode.attr(&#x27;simcir-node-type&#x27;) == &#x27;in&#x27;) {
         disconnect($srcNode);
       }
       dragMoveHandler = function(event) {
@@ -1326,7 +1381,7 @@ var simcir = function($) {
         $temporaryPane.children().remove();
         var $dst = $(event.target);
         if (isActiveNode($dst) ) {
-          var $dstNode = $dst.closest('.simcir-node');
+          var $dstNode = $dst.closest(&#x27;.simcir-node&#x27;);
           connect($srcNode, $dstNode);
           updateConnectors();
         }
@@ -1334,7 +1389,7 @@ var simcir = function($) {
     };
 
     var beginNewDevice = function(event, $target) {
-      var $dev = $target.closest('.simcir-device');
+      var $dev = $target.closest(&#x27;.simcir-device&#x27;);
       var pos = offset($dev);
       $dev = createDevice(controller($dev).deviceDef);
       transform($dev, pos.x, pos.y);
@@ -1349,7 +1404,7 @@ var simcir = function($) {
       };
       dragCompleteHandler = function(event) {
         var $target = $(event.target);
-        if ($target.closest('.simcir-toolbox').length == 0) {
+        if ($target.closest(&#x27;.simcir-toolbox&#x27;).length == 0) {
           $dev.detach();
           var pos = transform($dev);
           transform($dev, pos.x - toolboxWidth, pos.y);
@@ -1367,14 +1422,14 @@ var simcir = function($) {
       $selectedDevices.push($dev);
     };
     var deselectAll = function() {
-      $devicePane.children('.simcir-device').each(function() {
+      $devicePane.children(&#x27;.simcir-device&#x27;).each(function() {
         controller($(this) ).setSelected(false);
       });
       $selectedDevices = [];
     };
 
     var beginMoveDevice = function(event, $target) {
-      var $dev = $target.closest('.simcir-device');
+      var $dev = $target.closest(&#x27;.simcir-device&#x27;);
       var pos = transform($dev);
       if (!controller($dev).isSelected() ) {
         deselectAll();
@@ -1405,7 +1460,7 @@ var simcir = function($) {
         var $target = $(event.target);
         enableEvents($dev, true);
         $.each($selectedDevices, function(i, $dev) {
-          if ($target.closest('.simcir-toolbox').length == 0) {
+          if ($target.closest(&#x27;.simcir-toolbox&#x27;).length == 0) {
             adjustDevice($dev);
             updateConnectors();
           } else {
@@ -1418,10 +1473,10 @@ var simcir = function($) {
     var beginSelectDevice = function(event, $target) {
       var intersect = function(rect1, rect2) {
         return !(
-            rect1.x > rect2.x + rect2.width ||
-            rect1.y > rect2.y + rect2.height ||
-            rect1.x + rect1.width < rect2.x ||
-            rect1.y + rect1.height < rect2.y);
+            rect1.x &gt; rect2.x + rect2.width ||
+            rect1.y &gt; rect2.y + rect2.height ||
+            rect1.x + rect1.width &lt; rect2.x ||
+            rect1.y + rect1.height &lt; rect2.y);
       };
       var pointToRect = function(p1, p2) {
         return {
@@ -1438,7 +1493,7 @@ var simcir = function($) {
         deselectAll();
         var p2 = {x: event.pageX - off.left, y: event.pageY - off.top};
         var selRect = pointToRect(p1, p2);
-        $devicePane.children('.simcir-device').each(function() {
+        $devicePane.children(&#x27;.simcir-device&#x27;).each(function() {
           var $dev = $(this);
           var devPos = transform($dev);
           var devSize = controller($dev).getSize();
@@ -1452,9 +1507,9 @@ var simcir = function($) {
           }
         });
         $temporaryPane.children().remove();
-        $temporaryPane.append(createSVGElement('rect').
+        $temporaryPane.append(createSVGElement(&#x27;rect&#x27;).
             attr(selRect).
-            attr('class', 'simcir-selection-rect') );
+            attr(&#x27;class&#x27;, &#x27;simcir-selection-rect&#x27;) );
       };
     };
 
@@ -1464,8 +1519,8 @@ var simcir = function($) {
       var $target = $(event.target);
       if (isActiveNode($target) ) {
         beginConnect(event, $target);
-      } else if ($target.closest('.simcir-device').length == 1) {
-        if ($target.closest('.simcir-toolbox').length == 1) {
+      } else if ($target.closest(&#x27;.simcir-device&#x27;).length == 1) {
+        if ($target.closest(&#x27;.simcir-toolbox&#x27;).length == 1) {
           beginNewDevice(event, $target);
         } else {
           beginMoveDevice(event, $target);
@@ -1473,8 +1528,8 @@ var simcir = function($) {
       } else {
         beginSelectDevice(event, $target);
       }
-      $(document).on('mousemove', mouseMoveHandler);
-      $(document).on('mouseup', mouseUpHandler);
+      $(document).on(&#x27;mousemove&#x27;, mouseMoveHandler);
+      $(document).on(&#x27;mouseup&#x27;, mouseUpHandler);
     };
     var mouseMoveHandler = function(event) {
       if (dragMoveHandler != null) {
@@ -1487,14 +1542,14 @@ var simcir = function($) {
       }
       dragMoveHandler = null;
       dragCompleteHandler = null;
-      $devicePane.children('.simcir-device').each(function() {
+      $devicePane.children(&#x27;.simcir-device&#x27;).each(function() {
         enableEvents($(this), true);
       });
       $temporaryPane.children().remove();
-      $(document).off('mousemove', mouseMoveHandler);
-      $(document).off('mouseup', mouseUpHandler);
+      $(document).off(&#x27;mousemove&#x27;, mouseMoveHandler);
+      $(document).off(&#x27;mouseup&#x27;, mouseUpHandler);
     };
-    $workspace.on('mousedown', mouseDownHandler);
+    $workspace.on(&#x27;mousedown&#x27;, mouseDownHandler);
 
     //-------------------------------------------
     //
@@ -1520,26 +1575,26 @@ var simcir = function($) {
    */
   var setupSimcir = function($placeHolder, data) {
     var $workspace = simcir.createWorkspace(data);
-    var $dataArea = $('<textarea></textarea>').
-      addClass('simcir-json-data-area').
-      attr('readonly', 'readonly').
-      css('width', $workspace.attr('width') + 'px').
-      css('height', $workspace.attr('height') + 'px');
+    var $dataArea = $(&#x27;&lt;textarea&gt;&lt;/textarea&gt;&#x27;).
+      addClass(&#x27;simcir-json-data-area&#x27;).
+      attr(&#x27;readonly&#x27;, &#x27;readonly&#x27;).
+      css(&#x27;width&#x27;, $workspace.attr(&#x27;width&#x27;) + &#x27;px&#x27;).
+      css(&#x27;height&#x27;, $workspace.attr(&#x27;height&#x27;) + &#x27;px&#x27;);
     var showData = false;
     var toggle = function() {
-      $workspace.css('display', !showData? 'inline' : 'none');
-      $dataArea.css('display', showData? 'inline' : 'none');
+      $workspace.css(&#x27;display&#x27;, !showData? &#x27;inline&#x27; : &#x27;none&#x27;);
+      $dataArea.css(&#x27;display&#x27;, showData? &#x27;inline&#x27; : &#x27;none&#x27;);
       if (showData) {
         $dataArea.val(controller($workspace).text() ).focus();
       }
       showData = !showData;
     };
-    $placeHolder.text('');
-    $placeHolder.append($('<div></div>').
-        addClass('simcir-body').
+    $placeHolder.text(&#x27;&#x27;);
+    $placeHolder.append($(&#x27;&lt;div&gt;&lt;/div&gt;&#x27;).
+        addClass(&#x27;simcir-body&#x27;).
         append($workspace).
         append($dataArea).
-        on('click', function(event) {
+        on(&#x27;click&#x27;, function(event) {
           if (event.ctrlKey || event.metaKey) {
             toggle();
           }
@@ -1554,18 +1609,18 @@ var simcir = function($) {
    * @return -
    */
   var setupSimcirDoc = function($placeHolder) {
-    var $table = $('<table><tbody></tbody></table>').
-      addClass('simcir-doc-table');
+    var $table = $(&#x27;&lt;table&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;&#x27;).
+      addClass(&#x27;simcir-doc-table&#x27;);
     $.each(defaultToolbox, function(i, deviceDef) {
       var $dev = createDevice(deviceDef);
       var device = controller($dev);
       if (!device.doc) {
         return;
       }
-      var doc = $.extend({description: '', params: []},device.doc);
+      var doc = $.extend({description: &#x27;&#x27;, params: []},device.doc);
       var size = device.getSize();
 
-      var $tr = $('<tr></tr>');
+      var $tr = $(&#x27;&lt;tr&gt;&lt;/tr&gt;&#x27;);
       var hgap = 32;
       var vgap = 8;
       var $view = createSVG(size.width + hgap * 2,
@@ -1574,69 +1629,69 @@ var simcir = function($) {
       transform($dev, hgap, vgap);
 
       $view.append($dev);
-      $tr.append($('<td></td>').css('text-align', 'center').append($view) );
-      var $desc = $('<td></td>');
+      $tr.append($(&#x27;&lt;td&gt;&lt;/td&gt;&#x27;).css(&#x27;text-align&#x27;, &#x27;center&#x27;).append($view) );
+      var $desc = $(&#x27;&lt;td&gt;&lt;/td&gt;&#x27;);
       $tr.append($desc);
 
       if (doc.description) {
-        $desc.append($('<span></span>').
+        $desc.append($(&#x27;&lt;span&gt;&lt;/span&gt;&#x27;).
             text(doc.description) );
       }
 
-      if (doc.params.length > 0) {
-        $desc.append($('<div>Params</div>').addClass('simcir-doc-title') );
-        var $paramsTable = $('<table><tbody></tbody></table>').
-          addClass('simcir-doc-params-table');
-        $paramsTable.children('tbody').append($('<tr></tr>').
-            append($('<th>Name</th>') ).
-            append($('<th>Type</th>') ).
-            append($('<th>Default</th>') ).
-            append($('<th>Description</th>') ) );
-        $paramsTable.children('tbody').append($('<tr></tr>').
-            append($('<td>type</td>') ).
-            append($('<td>string</td>') ).
-            append($('<td>-</td>').
-                css('text-align', 'center') ).
-            append($('<td>"' + deviceDef.type + '"</td>') ) );
-        $paramsTable.children('tbody').append($('<tr></tr>').
-            append($('<td>label</td>') ).
-            append($('<td>string</td>') ).
-            append($('<td>same with type</td>').css('text-align', 'center') ).
-            append($('<td>label for a device.</td>') ) );
+      if (doc.params.length &gt; 0) {
+        $desc.append($(&#x27;&lt;div&gt;Params&lt;/div&gt;&#x27;).addClass(&#x27;simcir-doc-title&#x27;) );
+        var $paramsTable = $(&#x27;&lt;table&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;&#x27;).
+          addClass(&#x27;simcir-doc-params-table&#x27;);
+        $paramsTable.children(&#x27;tbody&#x27;).append($(&#x27;&lt;tr&gt;&lt;/tr&gt;&#x27;).
+            append($(&#x27;&lt;th&gt;Name&lt;/th&gt;&#x27;) ).
+            append($(&#x27;&lt;th&gt;Type&lt;/th&gt;&#x27;) ).
+            append($(&#x27;&lt;th&gt;Default&lt;/th&gt;&#x27;) ).
+            append($(&#x27;&lt;th&gt;Description&lt;/th&gt;&#x27;) ) );
+        $paramsTable.children(&#x27;tbody&#x27;).append($(&#x27;&lt;tr&gt;&lt;/tr&gt;&#x27;).
+            append($(&#x27;&lt;td&gt;type&lt;/td&gt;&#x27;) ).
+            append($(&#x27;&lt;td&gt;string&lt;/td&gt;&#x27;) ).
+            append($(&#x27;&lt;td&gt;-&lt;/td&gt;&#x27;).
+                css(&#x27;text-align&#x27;, &#x27;center&#x27;) ).
+            append($(&#x27;&lt;td&gt;&quot;&#x27; + deviceDef.type + &#x27;&quot;&lt;/td&gt;&#x27;) ) );
+        $paramsTable.children(&#x27;tbody&#x27;).append($(&#x27;&lt;tr&gt;&lt;/tr&gt;&#x27;).
+            append($(&#x27;&lt;td&gt;label&lt;/td&gt;&#x27;) ).
+            append($(&#x27;&lt;td&gt;string&lt;/td&gt;&#x27;) ).
+            append($(&#x27;&lt;td&gt;same with type&lt;/td&gt;&#x27;).css(&#x27;text-align&#x27;, &#x27;center&#x27;) ).
+            append($(&#x27;&lt;td&gt;label for a device.&lt;/td&gt;&#x27;) ) );
 
         $.each(doc.params, function(i, param) {
-          $paramsTable.children('tbody').append($('<tr></tr>').
-            append($('<td></td>').text(param.name) ).
-            append($('<td></td>').text(param.type) ).
-            append($('<td></td>').css('text-align', 'center').
+          $paramsTable.children(&#x27;tbody&#x27;).append($(&#x27;&lt;tr&gt;&lt;/tr&gt;&#x27;).
+            append($(&#x27;&lt;td&gt;&lt;/td&gt;&#x27;).text(param.name) ).
+            append($(&#x27;&lt;td&gt;&lt;/td&gt;&#x27;).text(param.type) ).
+            append($(&#x27;&lt;td&gt;&lt;/td&gt;&#x27;).css(&#x27;text-align&#x27;, &#x27;center&#x27;).
                 text(param.defaultValue) ).
-            append($('<td></td>').text(param.description) ) );
+            append($(&#x27;&lt;td&gt;&lt;/td&gt;&#x27;).text(param.description) ) );
         });
         $desc.append($paramsTable);
       }
 
       if (doc.code) {
-        $desc.append($('<div>Code</div>').addClass('simcir-doc-title') );
-        $desc.append($('<div></div>').
-            addClass('simcir-doc-code').text(doc.code) );
+        $desc.append($(&#x27;&lt;div&gt;Code&lt;/div&gt;&#x27;).addClass(&#x27;simcir-doc-title&#x27;) );
+        $desc.append($(&#x27;&lt;div&gt;&lt;/div&gt;&#x27;).
+            addClass(&#x27;simcir-doc-code&#x27;).text(doc.code) );
       }
 
-      $table.children('tbody').append($tr);
+      $table.children(&#x27;tbody&#x27;).append($tr);
     });
 
     $placeHolder.append($table);
   };
 
   $(function() {
-    $('.simcir').each(function() {
+    $(&#x27;.simcir&#x27;).each(function() {
       var $placeHolder = $(this);
-      var text = $placeHolder.text().replace(/^\s+|\s+$/g, '');
-      setupSimcir($placeHolder, JSON.parse(text || '{}') );
+      var text = $placeHolder.text().replace(/^\s+|\s+$/g, &#x27;&#x27;);
+      setupSimcir($placeHolder, JSON.parse(text || &#x27;{}&#x27;) );
     });
   });
 
   $(function() {
-    $('.simcir-doc').each(function() {
+    $(&#x27;.simcir-doc&#x27;).each(function() {
       setupSimcirDoc($(this) );
     });
   });
@@ -1657,3 +1712,22 @@ var simcir = function($) {
     unit: unit
   };
 }(jQuery);
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

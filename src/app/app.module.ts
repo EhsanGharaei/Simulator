@@ -12,6 +12,12 @@ import {PageNotFoundComponent} from './pageNotFound/pageNotFound.component';
 import {SimulatorComponent} from './simulator/simulator.component';
 import {DragulaModule} from 'ng2-dragula/ng2-dragula';
 import 'dragula/dist/dragula.css';
+/*import './simcirjs/jquery-2.1.1.min.js';
+import './simcirjs/simcir.js';
+import './simcirjs/simcir-basicset.js';
+import './simcirjs/simcir-custom.js';
+import './simcirjs/simcir.css';
+import './simcirjs/simcir-basicset.css';*/
 
 
 

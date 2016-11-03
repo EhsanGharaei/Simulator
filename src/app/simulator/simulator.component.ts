@@ -11,11 +11,13 @@ import { Component } from '@angular/core';
 })
 export class SimulatorComponent {
 
+
     ngOnInit(){
         if(!window.location.hash) {
             window.location = window.location + '#loaded';
             window.location.reload();
         }
+
     }
 
     ngAfterViewInit() {

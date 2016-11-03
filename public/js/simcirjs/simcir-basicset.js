@@ -9,37 +9,48 @@
 //  http://www.opensource.org/licenses/mit-license.php
 //
 
-
+/**
+ * Base function of SimcirJS
+ *
+ * @class simcir-basicSet
+ */
 !function($, $s) {
 
   // unit size
   var unit = $s.unit;
 
   // symbol draw functions
-
+  var drawPowerLine=function(g, x, y, width, height) {
+    //g.moveTo(x, y);
+    /*g.lineTo(x + width, y + height / 2);
+     g.lineTo(x, y + height);
+     g.lineTo(x, y);*/
+    //g.closePath(true);
+  };
   var drawBUF = function(g, x, y, width, height) {
-    g.moveTo(x, y);
+    //g.moveTo(x, y);
     /*g.lineTo(x + width, y + height / 2);
     g.lineTo(x, y + height);
     g.lineTo(x, y);*/
-    g.closePath(true);
+    //g.closePath(true);
   };
   var drawAND = function(g, x, y, width, height) {
-    g.moveTo(x, y);
-    /*g.curveTo(x + width, y, x + width, y + height / 2);
+    /*g.moveTo(x, y);
+    g.curveTo(x + width, y, x + width, y + height / 2);
     g.curveTo(x + width, y + height, x, y + height);
-    g.lineTo(x, y);*/
-    g.closePath(true);
+    g.lineTo(x, y);
+    g.closePath(true);*/
   };
   var drawNOT = function(g, x, y, width, height) {
-    drawBUF(g, x - 1, y, width - 2, height);
+    //drawBUF(g, x - 1, y, width - 2, height);
     //g.drawCircle(x + width - 1, y + height / 2, 2);
   };
   var drawNAND = function(g, x, y, width, height) {
-    drawAND(g, x - 1, y, width - 2, height);
+    //drawAND(g, x - 1, y, width - 2, height);
     //g.drawCircle(x + width - 1, y + height / 2, 2);
   };
   // logical functions
+  var powerLine= function(a) { return a; };
   var AND = function(a, b) { return a & b; };
   var BUF = function(a) { return (a == 1)? 1 : 0; };
   var NOT = function(a) { return (a == 1)? 0 : 1; };
@@ -93,11 +104,13 @@
   };
 
 
+
+
   // register logic gates
   $s.registerDevice('Transformer', createLogicGateFactory(null, BUF, drawBUF) );
   $s.registerDevice('Nuclear power plant', createLogicGateFactory(null, NOT, drawNOT) );
-  $s.registerDevice('windmill', createLogicGateFactory(AND, BUF, drawAND) );
-  $s.registerDevice('Power line', createLogicGateFactory(AND, NOT, drawNAND) );
+  $s.registerDevice('windmill', createLogicGateFactory(null, BUF, drawAND) );
+  $s.registerDevice('Power line', createLogicGateFactory(null, powerLine, drawPowerLine) );
 
 
 

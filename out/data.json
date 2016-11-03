@@ -1,0 +1,528 @@
+{
+    "project": {},
+    "files": {
+        "config/helpers.js": {
+            "name": "config/helpers.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "public/js/simcirjs/simcir.js": {
+            "name": "public/js/simcirjs/simcir.js",
+            "modules": {},
+            "classes": {
+                "simcir": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "karma.conf.js": {
+            "name": "karma.conf.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "webpack.config.js": {
+            "name": "webpack.config.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "simcir": {
+            "name": "simcir",
+            "shortname": "simcir",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 15,
+            "description": "Base function of SimcirJS"
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "config/helpers.js",
+            "line": 1,
+            "description": "Created by ehsangharaei on 13/10/2016.",
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 22,
+            "description": "It creates SVG element.\nInput: tagNeme",
+            "itemtype": "method",
+            "name": "createSVGElement",
+            "return": {
+                "description": "Returns $(document.createElementNS())",
+                "type": "Function"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 33,
+            "description": "It creates SVG.\nInput: w,h",
+            "itemtype": "method",
+            "name": "createSVG",
+            "return": {
+                "description": "Returns createSVGElement('svg').attr({})",
+                "type": "Function"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 47,
+            "description": "It creates some functions for drawing.\nInput: $target",
+            "itemtype": "method",
+            "name": "graphics",
+            "return": {
+                "description": "Returns attr,moveTo,lineTo,curveTo,closePath,drawRect,drawCircle",
+                "type": "Function"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 92,
+            "description": "split class names.\nInput: $o,f",
+            "itemtype": "method",
+            "name": "eachClass",
+            "return": {
+                "description": "Returns callback on each classnames of an attribute",
+                "type": "Function"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 104,
+            "description": "add or remove class.\nInput: $o,className, remove",
+            "itemtype": "method",
+            "name": "addClass",
+            "return": {
+                "description": "Returns $o",
+                "type": "Function"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 125,
+            "description": "remove class.\nInput: $o,classNeme",
+            "itemtype": "method",
+            "name": "removeClass",
+            "return": {
+                "description": "Returns addClass with remove true to remove a class",
+                "type": "Function"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 134,
+            "description": "search to find if it has the className.\nInput: $o,className",
+            "itemtype": "method",
+            "name": "hasClass",
+            "return": {
+                "description": "Returns true or false",
+                "type": "Boolean"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 149,
+            "description": "move or rotate attribute.\nInput: -",
+            "itemtype": "method",
+            "name": "transform",
+            "return": {
+                "description": "Returns x,y,rotate",
+                "type": "Variables"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 179,
+            "description": "offset an element.\nInput: $o",
+            "itemtype": "method",
+            "name": "offset",
+            "return": {
+                "description": "Returns x,y",
+                "type": "Variables"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 196,
+            "description": "set \"pointer-events\" css class value to \"visiblePainted\" if enable else 'none'.\nInput: $o,enable",
+            "itemtype": "method",
+            "name": "enableEvents",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 205,
+            "description": "set css '-webkit-user-select' value to 'none'.\nInput: $o",
+            "itemtype": "method",
+            "name": "disableSelection",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 216,
+            "description": "???????????\nInput: -",
+            "itemtype": "method",
+            "name": "controller",
+            "return": {
+                "description": "????",
+                "type": "Function"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 232,
+            "description": "events handler.\nInput: -",
+            "itemtype": "method",
+            "name": "eventQueue",
+            "return": {
+                "description": "postEvent",
+                "type": "Function"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 272,
+            "params": [
+                {
+                    "name": "unit\nit",
+                    "description": "is set to 16",
+                    "type": "Integer"
+                }
+            ],
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 278,
+            "params": [
+                {
+                    "name": "fontSize\nit",
+                    "description": "is set to 12",
+                    "type": "Integer"
+                }
+            ],
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 284,
+            "description": "create text label.\nInput: text",
+            "itemtype": "method",
+            "name": "createLabel",
+            "return": {
+                "description": "Returns createSVGElement to make an text element.",
+                "type": "Function"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 295,
+            "description": "creates node and its controller, input, output.\nInput: type,label,description, headless",
+            "itemtype": "method",
+            "name": "createNode",
+            "return": {
+                "description": "Returns $node",
+                "type": "Element"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 319,
+            "description": "checks if the node is active or not.\nInput: $o",
+            "itemtype": "method",
+            "name": "isActiveNode",
+            "return": {
+                "description": "Returns true or false",
+                "type": "Boolean"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 329,
+            "description": "controls everything about a node, setvalue, post event, get value, append label,\nadd class, remove class, handel inputs and outputs.\nInput: -",
+            "itemtype": "method",
+            "name": "createNodeController",
+            "return": {
+                "description": "$.extend() node with setValue, getValue",
+                "type": "Function"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 409,
+            "description": "extend node with setoutput and getoutput.\nInput: node",
+            "itemtype": "method",
+            "name": "createInputNodeController",
+            "return": {
+                "description": "$.extend(node, {setOutput,getOutput});",
+                "type": "Function"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 428,
+            "description": "extend node with setValue, getInputs, connectTo, disconnectFrom.\nInput: node",
+            "itemtype": "method",
+            "name": "createOutputNodeController",
+            "return": {
+                "description": "$.extend(node, {setValue, getInputs, connectTo, disconnectFrom});",
+                "type": "Function"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 471,
+            "description": "creates device, add device controller.\nInput: deviceDef, headless",
+            "itemtype": "method",
+            "name": "createDevice",
+            "return": {
+                "description": "$dev",
+                "type": "Element"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 495,
+            "description": "creates device controller.\nInput: device",
+            "itemtype": "method",
+            "name": "createDeviceController",
+            "return": {
+                "description": "$.extend(device, {addInput,addOutput,getInputs,getOutputs,disconnectAll,setSelected,\n     isSelected,getLabel,false,getSize,createUI,layoutUI});",
+                "type": "Function"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 673,
+            "description": "creates connector.\nInput: x1, y1, x2, y2",
+            "itemtype": "method",
+            "name": "createConnector",
+            "return": {
+                "description": "createSVGElement('path')",
+                "type": "Function"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 684,
+            "description": "creates connector.\nInput: x1, y1, x2, y2",
+            "itemtype": "method",
+            "name": "connect",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 699,
+            "description": "creates device element.\nInput: data, headless",
+            "itemtype": "method",
+            "name": "buildCircuit",
+            "return": {
+                "description": "$devices",
+                "type": "Element"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 734,
+            "description": "creates dialog.\nInput: title, $content",
+            "itemtype": "method",
+            "name": "showDialog",
+            "return": {
+                "description": "$dlg",
+                "type": "Element"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 813,
+            "description": "Input: data",
+            "itemtype": "method",
+            "name": "createDeviceRefFactory",
+            "return": {
+                "description": "",
+                "type": "Function"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 886,
+            "params": [
+                {
+                    "name": "factories",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 892,
+            "params": [
+                {
+                    "name": "defaultToolbox",
+                    "description": "",
+                    "type": "Array"
+                }
+            ],
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 898,
+            "description": "Add device in toolbox and create device factory forthat device.\nInput: type, factory",
+            "itemtype": "method",
+            "name": "registerDevice",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 911,
+            "description": "Create scroll bar and controls all of its actions.\nInput: -",
+            "itemtype": "method",
+            "name": "createScrollbar",
+            "return": {
+                "description": "$scrollbar",
+                "type": "Element"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1028,
+            "description": "Generates unigue id.\nInput: -",
+            "itemtype": "method",
+            "name": "getUniqueId",
+            "return": {
+                "description": "simcir-id-generated id",
+                "type": "String"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1040,
+            "description": "Create the whole work spaces and handle everything happens inside.\nInput: data",
+            "itemtype": "method",
+            "name": "createWorkspace",
+            "return": {
+                "description": "$workspace",
+                "type": "Element"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1488,
+            "description": "setup simulator and workspace and handles switching between json view and circuit view.\nInput: $placeHolder, data",
+            "itemtype": "method",
+            "name": "setupSimcir",
+            "return": {
+                "description": "$placeHolder",
+                "type": "Element"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1523,
+            "description": "Make HTML view based on JSON data for doc view.\nInput: $placeHolder",
+            "itemtype": "method",
+            "name": "setupSimcirDoc",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "karma.conf.js",
+            "line": 1,
+            "description": "Created by ehsangharaei on 13/10/2016.",
+            "class": ""
+        },
+        {
+            "file": "webpack.config.js",
+            "line": 1,
+            "description": "Created by ehsangharaei on 13/10/2016.",
+            "class": ""
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nCreated by ehsangharaei on 13/10/2016.",
+            "line": " config/helpers.js:1"
+        },
+        {
+            "message": "Missing item type",
+            "line": " public/js/simcirjs/simcir.js:272"
+        },
+        {
+            "message": "Missing item type",
+            "line": " public/js/simcirjs/simcir.js:278"
+        },
+        {
+            "message": "Missing item type",
+            "line": " public/js/simcirjs/simcir.js:886"
+        },
+        {
+            "message": "Missing item type",
+            "line": " public/js/simcirjs/simcir.js:892"
+        },
+        {
+            "message": "Missing item type\nCreated by ehsangharaei on 13/10/2016.",
+            "line": " karma.conf.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by ehsangharaei on 13/10/2016.",
+            "line": " webpack.config.js:1"
+        }
+    ]
+}
