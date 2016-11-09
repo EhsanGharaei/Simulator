@@ -616,13 +616,15 @@ var simcir = function($) {
         }
       });
       //--------added by ehsangharaei-------------------
+
       if(device.deviceDef.type =='Power line') {
         var size = device.getSize();
         var w = size.width;
         var h = size.height;
         var powerLineLength = 500;
 
-        var $body = createSVGElement('path').attr('class', 'simcir-device-body').attr('class', 'power-line').attr('d', 'M '+0+' '+w/2+' L '+powerLineLength+' '+w/2 );
+        var $body = createSVGElement('path')
+            .attr('class', 'power-line  simcir-device-body').attr('d', 'M '+0+' '+w/2+' L '+powerLineLength+' '+w/2 );
       }
       else{
         var $body = createSVGElement('rect').attr('class', 'simcir-device-body').attr('rx', 2).attr('ry', 2);
@@ -1159,13 +1161,35 @@ var simcir = function($) {
 
     //---------added by ehsangharaei---------------
     $(".power-line-add-button").click(function(){
+      var powerLineLength=prompt('Enter the length of the line(Default is 500):');
+      //
+      var num_of_inputs=prompt('Enter the number of inputs(Default is 5):');
+      registerDevice('Power line', createLogicGateFactory(num_of_inputs, powerLine, drawPowerLine) );
+      //
+
       var $dev=$devicePane.children('.simcir-device').find('.power-line').closest('.simcir-device');
       $dev = createDevice(controller($dev).deviceDef);
-      $dev[0].firstChild.outerHTML=$dev[0].firstChild.outerHTML.replace("500", "300");
-      console.log($dev[0].firstChild.outerHTML);
+      $dev[0].firstChild.outerHTML=$dev[0].firstChild.outerHTML.replace("500", powerLineLength ? powerLineLength:"500");
+      console.log($dev);
       adjustDevice($dev);
       addDevice($dev);
     });
+    //modal
+    $("#place-power-line").click(function() {
+      var powerLineLength=$("#lengthFromModal").val();
+      var num_of_inputs=$("#numberOfInputsFromModal").val();
+      registerDevice('Power line', createLogicGateFactory(num_of_inputs, powerLine, drawPowerLine) );
+      var $dev=$devicePane.children('.simcir-device').find('.power-line').closest('.simcir-device');
+      $dev = createDevice(controller($dev).deviceDef);
+      $dev[0].firstChild.outerHTML=$dev[0].firstChild.outerHTML.replace("500", powerLineLength ? powerLineLength:"500");
+      console.log($dev);
+      adjustDevice($dev);
+      addDevice($dev);
+      console.log('hello');
+      console.log($("#lengthFromModal").val());
+      //$("#gridSystemModal").hide(400);
+    });
+    //end of modal
 
     var disconnect = function($inNode) {
       var inNode = controller($inNode);
@@ -1626,6 +1650,67 @@ var simcir = function($) {
 
     $placeHolder.append($table);
   };
+
+
+  //for test
+  var createLogicGateFactory = function(op, out, draw) {
+    return function(device) {
+      if(device.deviceDef.type =='Power line') {
+        var numInputs=op;
+      }
+      else {
+        var numInputs = (op == null) ? 1 :
+            Math.max(2, device.deviceDef.numInputs || 2);
+      }
+      device.halfPitch = numInputs > 2;
+      for (var i = 0; i < numInputs; i += 1) {
+        device.addInput();
+      }
+      device.addOutput();
+      var inputs = device.getInputs();
+      var outputs = device.getOutputs();
+      device.$ui.on('inputValueChange', function() {
+        var b = intValue(inputs[0].getValue() );
+        if (op != null) {
+          for (var i = 1; i < inputs.length; i += 1) {
+            b = op(b, intValue(inputs[i].getValue() ) );
+          }
+        }
+        b = out(b);
+        outputs[0].setValue( (b == 1)? 1 : null);
+      });
+      var super_createUI = device.createUI;
+      device.createUI = function() {
+        super_createUI();
+        var size = device.getSize();
+        var g = graphics(device.$ui);
+        g.attr['class'] = 'simcir-basicset-symbol';
+        draw(g,
+            (size.width - unit) / 2,
+            (size.height - unit) / 2,
+            unit, unit);
+        if (op != null) {
+          device.doc = {
+            params: [
+              {name: 'numInputs', type: 'number',
+                defaultValue: 2,
+                description: 'number of inputs.'}
+            ],
+            code: '{"type":"' + device.deviceDef.type + '","numInputs":2}'
+          };
+        }
+      };
+    };
+  };
+  var drawPowerLine=function(g, x, y, width, height) {
+    //g.moveTo(x, y);
+    /*g.lineTo(x + width, y + height / 2);
+     g.lineTo(x, y + height);
+     g.lineTo(x, y);*/
+    //g.closePath(true);
+  };
+  var powerLine= function(a) { return a; };
+  //for test
 
   $(function() {
     $('.simcir').each(function() {

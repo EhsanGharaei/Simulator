@@ -4,7 +4,40 @@
             <button class="btn btn-default power-line-add-button" type="button" aria-haspopup="true" aria-expanded="true" data-toggle="tooltip" data-placement="top" title="Add Power line">
                 <span>-</span><i class="fa fa-bolt" aria-hidden="true"></i><span>-</span>
             </button>
+
         </div>
+        <!--Modal-->
+        <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="gridModalLabel">Power Line Specifications</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid bd-example-row">
+                            <div class="row">
+                                Length (Default is 500): <input type="text" id="lengthFromModal">
+                            </div>
+                            <div class="row">
+                                Number of inputs: <input type="text" id="numberOfInputsFromModal">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" id="place-power-line" data-dismiss="modal">Place Power Line</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bd-example bd-example-padded-bottom">
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#gridSystemModal">
+                Launch demo modal
+            </button>
+        </div>
+        <!--end of modal-->
+
     <div class="simcir">
         <!-- paste here your circuit data -->
     </div>
