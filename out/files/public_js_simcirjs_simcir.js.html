@@ -39,6 +39,7 @@
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
                                 <li><a href="../classes/simcir.html">simcir</a></li>
+                                <li><a href="../classes/simcir-basicSet.html">simcir-basicSet</a></li>
                             </ul>
                 
                 
@@ -662,6 +663,7 @@ var simcir = function($) {
       var w = size.width;
       var h = size.height;
 
+
       device.$ui.children(&#x27;.simcir-device-body&#x27;).
         attr({x: 0, y: 0, width: w, height: h});
 
@@ -672,8 +674,15 @@ var simcir = function($) {
           transform(node.$ui, x, pitch * i + offset);
         });
       };
-      layoutNodes(getInputs(), 0);
-      layoutNodes(getOutputs(), w);
+      if(device.deviceDef.type ==&#x27;Power line&#x27;) {
+        layoutNodes(getInputs(), 0);
+        layoutNodes(getOutputs(), 500);
+      }
+      else{
+        layoutNodes(getInputs(), 0);
+        layoutNodes(getOutputs(), w);
+      }
+
 
       device.$ui.children(&#x27;.simcir-device-label&#x27;).
         attr({x: w / 2, y: h + fontSize});
@@ -689,18 +698,28 @@ var simcir = function($) {
           removeClass($(this), &#x27;simcir-device-selected&#x27;);
         }
       });
+      //--------added by ehsangharaei-------------------
 
-      var $body = createSVGElement(&#x27;rect&#x27;).
-        attr(&#x27;class&#x27;, &#x27;simcir-device-body&#x27;).
-        attr(&#x27;rx&#x27;, 2).attr(&#x27;ry&#x27;, 2);
+      if(device.deviceDef.type ==&#x27;Power line&#x27;) {
+        var size = device.getSize();
+        var w = size.width;
+        var h = size.height;
+        var powerLineLength = 500;
+
+        var $body = createSVGElement(&#x27;path&#x27;)
+            .attr(&#x27;class&#x27;, &#x27;power-line  simcir-device-body&#x27;).attr(&#x27;d&#x27;, &#x27;M &#x27;+0+&#x27; &#x27;+w/2+&#x27; L &#x27;+powerLineLength+&#x27; &#x27;+w/2 );
+      }
+      else{
+        var $body = createSVGElement(&#x27;rect&#x27;).attr(&#x27;class&#x27;, &#x27;simcir-device-body&#x27;).attr(&#x27;rx&#x27;, 2).attr(&#x27;ry&#x27;, 2);
+      }
+
       device.$ui.prepend($body);
 
-      var $label = createLabel(label).
-        attr(&#x27;class&#x27;, &#x27;simcir-device-label&#x27;).
-        attr(&#x27;text-anchor&#x27;, &#x27;middle&#x27;);
-      device.$ui.on(&#x27;deviceLabelChange&#x27;, function() {
-        $label.text(getLabel() );
+      var $label = createLabel(label).attr(&#x27;class&#x27;, &#x27;simcir-device-label&#x27;).attr(&#x27;text-anchor&#x27;, &#x27;middle&#x27;);
+      device.$ui.on(&#x27;deviceLabelChange&#x27;, function () {
+        $label.text(getLabel());
       });
+
 
       var label_dblClickHandler = function() {
         // open library,
@@ -737,6 +756,7 @@ var simcir = function($) {
 
     };
 
+
     return $.extend(device, {
       addInput: addInput,
       addOutput: addOutput,
@@ -749,6 +769,7 @@ var simcir = function($) {
       halfPitch: false,
       getSize: getSize,
       createUI: createUI,
+      createUIForPowerLine:createUIForPowerLine,
       layoutUI: layoutUI
     });
   };
@@ -988,7 +1009,8 @@ var simcir = function($) {
       factory = createDeviceRefFactory(factory);
     }
     factories[type] = factory;
-    defaultToolbox.push({type: type});
+    if(type!=&#x27;Power line&#x27;)
+      defaultToolbox.push({type: type});
   };
   /**
    * Create scroll bar and controls all of its actions.
@@ -1128,13 +1150,11 @@ var simcir = function($) {
   var createWorkspace = function(data) {
 
     data = $.extend({
-      /*width: 400,
-      height: 200,*/
-      width: 900,
-      height: 500,
+      width: 900, //edited by ehsangharaei
+      height: 500, //edited by ehsangharaei
       showToolbox: true,
       toolbox: defaultToolbox,
-      devices: [],
+      devices: [{&quot;type&quot;:&quot;Power line&quot;,&quot;id&quot;:&quot;dev0&quot;,&quot;x&quot;:100,&quot;y&quot;:50,&quot;label&quot;:&quot;Power line&quot;}],
       connectors: [],
     }, data);
 
@@ -1221,6 +1241,20 @@ var simcir = function($) {
       $dev.remove();
       updateConnectors();
     };
+
+    //---------added by ehsangharaei---------------
+    $(&quot;#place-power-line&quot;).click(function() {
+      var powerLineLength=$(&quot;#lengthFromModal&quot;).val();
+      var num_of_inputs=$(&quot;#lengthFromModal&quot;).val()?$(&quot;#lengthFromModal&quot;).val():2;
+      registerDevice(&#x27;Power line&#x27;, createLogicGateFactory(num_of_inputs, powerLine, drawPowerLine) );
+      var $dev=$devicePane.children(&#x27;.simcir-device&#x27;).find(&#x27;.power-line&#x27;).closest(&#x27;.simcir-device&#x27;);
+      $dev = createDevice(controller($dev).deviceDef);
+      $dev[0].firstChild.outerHTML=$dev[0].firstChild.outerHTML.replace(&quot;500&quot;, powerLineLength ? powerLineLength:&quot;500&quot;);
+      console.log($dev);
+      adjustDevice($dev);
+      addDevice($dev);
+    });
+
 
     var disconnect = function($inNode) {
       var inNode = controller($inNode);
@@ -1681,6 +1715,67 @@ var simcir = function($) {
 
     $placeHolder.append($table);
   };
+
+
+  //for test
+  var createLogicGateFactory = function(op, out, draw) {
+    return function(device) {
+      if(device.deviceDef.type ==&#x27;Power line&#x27;) {
+        var numInputs=op;
+      }
+      else {
+        var numInputs = (op == null) ? 1 :
+            Math.max(2, device.deviceDef.numInputs || 2);
+      }
+      device.halfPitch = numInputs &gt; 2;
+      for (var i = 0; i &lt; numInputs; i += 1) {
+        device.addInput();
+      }
+      device.addOutput();
+      var inputs = device.getInputs();
+      var outputs = device.getOutputs();
+      device.$ui.on(&#x27;inputValueChange&#x27;, function() {
+        var b = intValue(inputs[0].getValue() );
+        if (op != null) {
+          for (var i = 1; i &lt; inputs.length; i += 1) {
+            b = op(b, intValue(inputs[i].getValue() ) );
+          }
+        }
+        b = out(b);
+        outputs[0].setValue( (b == 1)? 1 : null);
+      });
+      var super_createUI = device.createUI;
+      device.createUI = function() {
+        super_createUI();
+        var size = device.getSize();
+        var g = graphics(device.$ui);
+        g.attr[&#x27;class&#x27;] = &#x27;simcir-basicset-symbol&#x27;;
+        draw(g,
+            (size.width - unit) / 2,
+            (size.height - unit) / 2,
+            unit, unit);
+        if (op != null) {
+          device.doc = {
+            params: [
+              {name: &#x27;numInputs&#x27;, type: &#x27;number&#x27;,
+                defaultValue: 2,
+                description: &#x27;number of inputs.&#x27;}
+            ],
+            code: &#x27;{&quot;type&quot;:&quot;&#x27; + device.deviceDef.type + &#x27;&quot;,&quot;numInputs&quot;:2}&#x27;
+          };
+        }
+      };
+    };
+  };
+  var drawPowerLine=function(g, x, y, width, height) {
+    //g.moveTo(x, y);
+    /*g.lineTo(x + width, y + height / 2);
+     g.lineTo(x, y + height);
+     g.lineTo(x, y);*/
+    //g.closePath(true);
+  };
+  var powerLine= function(a) { return a; };
+  //for test
 
   $(function() {
     $(&#x27;.simcir&#x27;).each(function() {

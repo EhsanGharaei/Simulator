@@ -8,6 +8,22 @@
             "fors": {},
             "namespaces": {}
         },
+        "public/js/simcirjs/simcir-basicset.js": {
+            "name": "public/js/simcirjs/simcir-basicset.js",
+            "modules": {},
+            "classes": {
+                "simcir-basicSet": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "public/js/simcirjs/simcir-custom.js": {
+            "name": "public/js/simcirjs/simcir-custom.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "public/js/simcirjs/simcir.js": {
             "name": "public/js/simcirjs/simcir.js",
             "modules": {},
@@ -34,6 +50,18 @@
     },
     "modules": {},
     "classes": {
+        "simcir-basicSet": {
+            "name": "simcir-basicSet",
+            "shortname": "simcir-basicSet",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "public/js/simcirjs/simcir-basicset.js",
+            "line": 12,
+            "description": "Base function of SimcirJS"
+        },
         "simcir": {
             "name": "simcir",
             "shortname": "simcir",
@@ -53,6 +81,12 @@
             "file": "config/helpers.js",
             "line": 1,
             "description": "Created by ehsangharaei on 13/10/2016.",
+            "class": "simcir-basicSet"
+        },
+        {
+            "file": "public/js/simcirjs/simcir-custom.js",
+            "line": 1,
+            "description": "Created by ehsangharaei on 02/11/2016.",
             "class": "simcir"
         },
         {
@@ -331,7 +365,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 673,
+            "line": 693,
             "description": "creates connector.\nInput: x1, y1, x2, y2",
             "itemtype": "method",
             "name": "createConnector",
@@ -343,7 +377,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 684,
+            "line": 704,
             "description": "creates connector.\nInput: x1, y1, x2, y2",
             "itemtype": "method",
             "name": "connect",
@@ -354,7 +388,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 699,
+            "line": 719,
             "description": "creates device element.\nInput: data, headless",
             "itemtype": "method",
             "name": "buildCircuit",
@@ -366,7 +400,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 734,
+            "line": 754,
             "description": "creates dialog.\nInput: title, $content",
             "itemtype": "method",
             "name": "showDialog",
@@ -378,7 +412,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 813,
+            "line": 833,
             "description": "Input: data",
             "itemtype": "method",
             "name": "createDeviceRefFactory",
@@ -390,7 +424,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 886,
+            "line": 906,
             "params": [
                 {
                     "name": "factories",
@@ -402,7 +436,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 892,
+            "line": 912,
             "params": [
                 {
                     "name": "defaultToolbox",
@@ -414,7 +448,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 898,
+            "line": 918,
             "description": "Add device in toolbox and create device factory forthat device.\nInput: type, factory",
             "itemtype": "method",
             "name": "registerDevice",
@@ -425,7 +459,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 911,
+            "line": 932,
             "description": "Create scroll bar and controls all of its actions.\nInput: -",
             "itemtype": "method",
             "name": "createScrollbar",
@@ -437,7 +471,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 1028,
+            "line": 1049,
             "description": "Generates unigue id.\nInput: -",
             "itemtype": "method",
             "name": "getUniqueId",
@@ -449,7 +483,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 1040,
+            "line": 1061,
             "description": "Create the whole work spaces and handle everything happens inside.\nInput: data",
             "itemtype": "method",
             "name": "createWorkspace",
@@ -461,7 +495,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 1488,
+            "line": 1521,
             "description": "setup simulator and workspace and handles switching between json view and circuit view.\nInput: $placeHolder, data",
             "itemtype": "method",
             "name": "setupSimcir",
@@ -473,7 +507,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 1523,
+            "line": 1556,
             "description": "Make HTML view based on JSON data for doc view.\nInput: $placeHolder",
             "itemtype": "method",
             "name": "setupSimcirDoc",
@@ -501,6 +535,10 @@
             "line": " config/helpers.js:1"
         },
         {
+            "message": "Missing item type\nCreated by ehsangharaei on 02/11/2016.",
+            "line": " public/js/simcirjs/simcir-custom.js:1"
+        },
+        {
             "message": "Missing item type",
             "line": " public/js/simcirjs/simcir.js:272"
         },
@@ -510,11 +548,11 @@
         },
         {
             "message": "Missing item type",
-            "line": " public/js/simcirjs/simcir.js:886"
+            "line": " public/js/simcirjs/simcir.js:906"
         },
         {
             "message": "Missing item type",
-            "line": " public/js/simcirjs/simcir.js:892"
+            "line": " public/js/simcirjs/simcir.js:912"
         },
         {
             "message": "Missing item type\nCreated by ehsangharaei on 13/10/2016.",

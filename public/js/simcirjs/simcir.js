@@ -19,6 +19,8 @@
  */
 var simcir = function($) {
 
+  var newpowerLineLength=500;
+
   /**
    * It creates SVG element.
    * Input: tagNeme
@@ -298,7 +300,7 @@ var simcir = function($) {
    * @method createNode
    * @return {element} Returns $node
    */
-  var createNode = function(type, label, description, headless) {
+  var createNode = function(type, label, description, headless,device_def_type,device_num_of_inputs,currentInput) {
     var $node = createSVGElement('g').
       attr('simcir-node-type', type);
     if (!headless) {
@@ -306,7 +308,7 @@ var simcir = function($) {
     }
     var node = createNodeController({
       $ui: $node, type: type, label: label,
-      description: description, headless: headless});
+      description: description, headless: headless,device_def_type:device_def_type,device_num_of_inputs:device_num_of_inputs,currentInput:currentInput});
     if (type == 'in') {
       controller($node, createInputNodeController(node) );
     } else if (type == 'out') {
@@ -349,9 +351,14 @@ var simcir = function($) {
     if (!node.headless) {
 
       node.$ui.attr('class', 'simcir-node simcir-node-type-' + node.type);
-
-      var $circle = createSVGElement('circle').
-        attr({cx: 0, cy: 0, r: 4});
+      //added by ehsangharaei
+      if(node.device_def_type=='Power line' && node.device_num_of_inputs && node.device_num_of_inputs!='') {
+        var dividedLength=newpowerLineLength/node.device_num_of_inputs;
+        var $circle = createSVGElement('circle').attr({cx: dividedLength*node.currentInput, cy: 16, r: 4});
+      }
+      else{
+        var $circle = createSVGElement('circle').attr({cx: 0, cy: 0, r: 4});
+      }
       node.$ui.on('mouseover', function(event) {
         if (isActiveNode(node.$ui) ) {
           addClass(node.$ui, 'simcir-node-hover');
@@ -502,8 +509,11 @@ var simcir = function($) {
   var createDeviceController = function(device) {
     var inputs = [];
     var outputs = [];
-    var addInput = function(label, description) {
-      var $node = createNode('in', label, description, device.headless);
+    var device_def_type=device.deviceDef.type;
+    var device_num_of_inputs=device.numOfInputs?device.numOfInputs:'';
+    var addInput = function(label, description,numOfInput,currentInput) {
+      var $node = createNode('in', label, description, device.headless,device_def_type,numOfInput,currentInput);
+
       $node.on('nodeValueChange', function(event) {
         device.$ui.trigger('inputValueChange');
       });
@@ -515,7 +525,7 @@ var simcir = function($) {
       return node;
     };
     var addOutput = function(label, description) {
-      var $node = createNode('out', label, description, device.headless);
+      var $node = createNode('out', label, description, device.headless,device_def_type,'','');
       if (!device.headless) {
         device.$ui.append($node);
       }
@@ -587,7 +597,8 @@ var simcir = function($) {
       var pitch = device.halfPitch? unit / 2 : unit;
       var layoutNodes = function(nodes, x) {
         var offset = (h - pitch * (nodes.length - 1) ) / 2;
-        $.each(nodes, function(i, node) {
+        //added by ehsangharaei
+        $.each(nodes, function (i, node) {
           transform(node.$ui, x, pitch * i + offset);
         });
       };
@@ -622,6 +633,7 @@ var simcir = function($) {
         var w = size.width;
         var h = size.height;
         var powerLineLength = 500;
+
 
         var $body = createSVGElement('path')
             .attr('class', 'power-line  simcir-device-body').attr('d', 'M '+0+' '+w/2+' L '+powerLineLength+' '+w/2 );
@@ -867,7 +879,7 @@ var simcir = function($) {
         if (portDef.type == 'In') {
           outPort = port.getOutputs()[0];
           inPort = device.addInput(portDef.label,
-              getDesc(outPort.getInputs()[0]) );
+              getDesc(outPort.getInputs()[0]));
           // force disconnect test devices that connected to In-port
           var inNode = port.getInputs()[0];
           if (inNode.getOutput() != null) {
@@ -1161,13 +1173,12 @@ var simcir = function($) {
 
     //---------added by ehsangharaei---------------
     $("#place-power-line").click(function() {
-      var powerLineLength=$("#lengthFromModal").val();
-      var num_of_inputs=$("#lengthFromModal").val()?$("#lengthFromModal").val():2;
+      newpowerLineLength=$("#lengthFromModal").val()?$("#lengthFromModal").val():500;
+      var num_of_inputs=$("#numberOfInputsFromModal").val()?$("#numberOfInputsFromModal").val():2;
       registerDevice('Power line', createLogicGateFactory(num_of_inputs, powerLine, drawPowerLine) );
       var $dev=$devicePane.children('.simcir-device').find('.power-line').closest('.simcir-device');
       $dev = createDevice(controller($dev).deviceDef);
-      $dev[0].firstChild.outerHTML=$dev[0].firstChild.outerHTML.replace("500", powerLineLength ? powerLineLength:"500");
-      console.log($dev);
+      $dev[0].firstChild.outerHTML=$dev[0].firstChild.outerHTML.replace("500", newpowerLineLength);
       adjustDevice($dev);
       addDevice($dev);
     });
@@ -1503,7 +1514,7 @@ var simcir = function($) {
     $workspace.on('mousedown', mouseDownHandler);
 
     //-------------------------------------------
-    //
+
 
     loadToolbox(data);
     $.each(buildCircuit(data, false), function(i, $dev) {
@@ -1637,6 +1648,7 @@ var simcir = function($) {
   //for test
   var createLogicGateFactory = function(op, out, draw) {
     return function(device) {
+      console.log('device',device.$ui[0]);
       if(device.deviceDef.type =='Power line') {
         var numInputs=op;
       }
@@ -1644,9 +1656,11 @@ var simcir = function($) {
         var numInputs = (op == null) ? 1 :
             Math.max(2, device.deviceDef.numInputs || 2);
       }
+      device.numOfInputs=numInputs;
       device.halfPitch = numInputs > 2;
       for (var i = 0; i < numInputs; i += 1) {
-        device.addInput();
+        var currentInput=i;
+        device.addInput('','',numInputs,currentInput);
       }
       device.addOutput();
       var inputs = device.getInputs();
