@@ -1,10 +1,9 @@
 <div class="row">
     <div class="sim-middle-style reload-sim">
         <div class="top-toolbox">
-            <button class="btn btn-default power-line-add-button" type="button" aria-haspopup="true" aria-expanded="true" data-toggle="tooltip" data-placement="top" title="Add Power line">
-                <span>-</span><i class="fa fa-bolt" aria-hidden="true"></i><span>-</span>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#gridSystemModal">
+                <span>-</span><i class="fa fa-bolt" aria-hidden="true"></i><span>-</span><span class="power-line-button-text">Power Line</span>
             </button>
-
         </div>
         <!--Modal-->
         <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
@@ -17,10 +16,16 @@
                     <div class="modal-body">
                         <div class="container-fluid bd-example-row">
                             <div class="row">
-                                Length (Default is 500): <input type="text" id="lengthFromModal">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">Length of the line:</span>
+                                    <input type="text" class="form-control" placeholder="500" aria-describedby="basic-addon1" id="lengthFromModal">
+                                </div>
                             </div>
-                            <div class="row">
-                                Number of inputs: <input type="text" id="numberOfInputsFromModal">
+                            <div class="row margin-top-for-number-of-inputs-in-modal">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">Number of inputs:</span>
+                                    <input type="text" class="form-control" placeholder="2" aria-describedby="basic-addon1" id="numberOfInputsFromModal">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -31,13 +36,7 @@
                 </div>
             </div>
         </div>
-        <div class="bd-example bd-example-padded-bottom">
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#gridSystemModal">
-                Launch demo modal
-            </button>
-        </div>
         <!--end of modal-->
-
     <div class="simcir">
         <!-- paste here your circuit data -->
     </div>

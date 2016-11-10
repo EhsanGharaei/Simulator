@@ -22,3 +22,10 @@
 .top-toolbox{
     margin-bottom: 10px;
 }
+.power-line-button-text{
+    font-size: smaller;
+    margin-left: 8px;
+}
+.margin-top-for-number-of-inputs-in-modal{
+    margin-top: 10px;
+}

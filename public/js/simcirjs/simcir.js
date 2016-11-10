@@ -1160,24 +1160,9 @@ var simcir = function($) {
     };
 
     //---------added by ehsangharaei---------------
-    $(".power-line-add-button").click(function(){
-      var powerLineLength=prompt('Enter the length of the line(Default is 500):');
-      //
-      var num_of_inputs=prompt('Enter the number of inputs(Default is 5):');
-      registerDevice('Power line', createLogicGateFactory(num_of_inputs, powerLine, drawPowerLine) );
-      //
-
-      var $dev=$devicePane.children('.simcir-device').find('.power-line').closest('.simcir-device');
-      $dev = createDevice(controller($dev).deviceDef);
-      $dev[0].firstChild.outerHTML=$dev[0].firstChild.outerHTML.replace("500", powerLineLength ? powerLineLength:"500");
-      console.log($dev);
-      adjustDevice($dev);
-      addDevice($dev);
-    });
-    //modal
     $("#place-power-line").click(function() {
       var powerLineLength=$("#lengthFromModal").val();
-      var num_of_inputs=$("#numberOfInputsFromModal").val();
+      var num_of_inputs=$("#lengthFromModal").val()?$("#lengthFromModal").val():2;
       registerDevice('Power line', createLogicGateFactory(num_of_inputs, powerLine, drawPowerLine) );
       var $dev=$devicePane.children('.simcir-device').find('.power-line').closest('.simcir-device');
       $dev = createDevice(controller($dev).deviceDef);
@@ -1185,11 +1170,8 @@ var simcir = function($) {
       console.log($dev);
       adjustDevice($dev);
       addDevice($dev);
-      console.log('hello');
-      console.log($("#lengthFromModal").val());
-      //$("#gridSystemModal").hide(400);
     });
-    //end of modal
+
 
     var disconnect = function($inNode) {
       var inNode = controller($inNode);
