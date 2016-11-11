@@ -19,7 +19,7 @@
  */
 var simcir = function($) {
 
-  var newpowerLineLength=500;
+  var newpowerLineLength=200;
 
   /**
    * It creates SVG element.
@@ -354,7 +354,8 @@ var simcir = function($) {
       //added by ehsangharaei
       if(node.device_def_type=='Power line' && node.device_num_of_inputs && node.device_num_of_inputs!='') {
         var dividedLength=newpowerLineLength/node.device_num_of_inputs;
-        var $circle = createSVGElement('circle').attr({cx: dividedLength*node.currentInput, cy: 16, r: 4});
+        //var $circle = createSVGElement('circle').attr({cx: dividedLength*node.currentInput, cy: 16, r: 4});
+        var $circle = createSVGElement('circle').attr({cx: 0, cy: 0, r: 4});
       }
       else{
         var $circle = createSVGElement('circle').attr({cx: 0, cy: 0, r: 4});
@@ -595,20 +596,40 @@ var simcir = function($) {
         attr({x: 0, y: 0, width: w, height: h});
 
       var pitch = device.halfPitch? unit / 2 : unit;
-      var layoutNodes = function(nodes, x) {
-        var offset = (h - pitch * (nodes.length - 1) ) / 2;
-        //added by ehsangharaei
-        $.each(nodes, function (i, node) {
-          transform(node.$ui, x, pitch * i + offset);
-        });
+      var layoutNodes = function(nodes, x , type) {
+        var offset;
+        if(type=='') {
+          offset = (h - pitch * (nodes.length - 1) ) / 2;
+          //added by ehsangharaei
+          $.each(nodes, function (i, node) {
+            transform(node.$ui, x, pitch * i + offset);
+          });
+        }
+        if(type=='powerLineOutput') {
+          offset = (h - pitch * (nodes.length - 1) ) / 2;
+          //added by ehsangharaei
+          $.each(nodes, function (i, node) {
+            transform(node.$ui, x, 16);
+          });
+        }
+        if(type=='powerLineInput'){
+          offset = (h - pitch * (nodes.length - 1) ) / 2;
+          //added by ehsangharaei
+          var eachInputDistance=newpowerLineLength/nodes.length;
+          $.each(nodes, function (i, node) {
+            transform(node.$ui, i*eachInputDistance , pitch + offset);
+          });
+        }
       };
+
+
       if(device.deviceDef.type =='Power line') {
-        layoutNodes(getInputs(), 0);
-        layoutNodes(getOutputs(), 500);
+        layoutNodes(getInputs(), 0, 'powerLineInput');
+        layoutNodes(getOutputs(), newpowerLineLength, 'powerLineOutput');
       }
       else{
-        layoutNodes(getInputs(), 0);
-        layoutNodes(getOutputs(), w);
+        layoutNodes(getInputs(), 0, '');
+        layoutNodes(getOutputs(), w, '');
       }
 
 
@@ -632,7 +653,7 @@ var simcir = function($) {
         var size = device.getSize();
         var w = size.width;
         var h = size.height;
-        var powerLineLength = 500;
+        var powerLineLength = 200;
 
 
         var $body = createSVGElement('path')
@@ -1173,12 +1194,12 @@ var simcir = function($) {
 
     //---------added by ehsangharaei---------------
     $("#place-power-line").click(function() {
-      newpowerLineLength=$("#lengthFromModal").val()?$("#lengthFromModal").val():500;
+      newpowerLineLength=$("#lengthFromModal").val()?$("#lengthFromModal").val():200;
       var num_of_inputs=$("#numberOfInputsFromModal").val()?$("#numberOfInputsFromModal").val():2;
       registerDevice('Power line', createLogicGateFactory(num_of_inputs, powerLine, drawPowerLine) );
       var $dev=$devicePane.children('.simcir-device').find('.power-line').closest('.simcir-device');
       $dev = createDevice(controller($dev).deviceDef);
-      $dev[0].firstChild.outerHTML=$dev[0].firstChild.outerHTML.replace("500", newpowerLineLength);
+      $dev[0].firstChild.outerHTML=$dev[0].firstChild.outerHTML.replace("200", newpowerLineLength);
       adjustDevice($dev);
       addDevice($dev);
     });

@@ -133,7 +133,7 @@
   $s.registerDevice('Transformer', createLogicGateFactory(null, BUF, drawBUF) );
   $s.registerDevice('Nuclear power plant', createLogicGateFactory(null, NOT, drawNOT) );
   $s.registerDevice('windmill', createLogicGateFactory(null, BUF, drawAND) );
-  $s.registerDevice('Power line', createLogicGateFactory(0, powerLine, drawPowerLine) );
+  $s.registerDevice('Power line', createLogicGateFactory(5, powerLine, drawPowerLine) );
 
 
 
