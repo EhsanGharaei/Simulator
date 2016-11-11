@@ -968,6 +968,12 @@ var simcir = function($) {
   var buildCircuit = function(data, headless) {
     var $devices = [];
     var $devMap = {};
+    /**
+     * get input and output nodes of a device.
+     * Input: path
+     * @method getNode
+     * @return {node} array of nodes
+     */
     var getNode = function(path) {
       if (!path.match(/^(\w+)\.(in|out)([0-9]+)$/g) ) {
         throw 'unknown path:' + path;
@@ -1033,6 +1039,12 @@ var simcir = function($) {
       append($content);
     $('BODY').append($dlg);
     var dragPoint = null;
+    /**
+     * dialog mouse down handler.
+     * Input: event
+     * @method dlg_mouseDownHandler
+     * @return -
+     */
     var dlg_mouseDownHandler = function(event) {
       if (!$(event.target).hasClass('simcir-dialog') &&
           !$(event.target).hasClass('simcir-dialog-title') ) {
@@ -1048,11 +1060,23 @@ var simcir = function($) {
       $(document).on('mousemove', dlg_mouseMoveHandler);
       $(document).on('mouseup', dlg_mouseUpHandler);
     };
+    /**
+     * dialog mouse movements handler.
+     * Input: event
+     * @method dlg_mouseMoveHandler
+     * @return -
+     */
     var dlg_mouseMoveHandler = function(event) {
       moveTo(
           event.pageX - dragPoint.x,
           event.pageY - dragPoint.y);
     };
+    /**
+     * dialog mouse up handler.
+     * Input: event
+     * @method dlg_mouseUpHandler
+     * @return -
+     */
     var dlg_mouseUpHandler = function(event) {
       $(document).off('mousemove', dlg_mouseMoveHandler);
       $(document).off('mouseup', dlg_mouseUpHandler);
@@ -1099,6 +1123,12 @@ var simcir = function($) {
         }
         return (x1 < x2)? -1 : 1;
       });
+      /**
+       * get port description.
+       * Input: event
+       * @method getDesc
+       * @return {string} port.description
+       */
       var getDesc = function(port) {
         return port? port.description : '';
       };
@@ -1206,6 +1236,12 @@ var simcir = function($) {
       });
 
     var dragPoint = null;
+    /**
+     * toolbox scroll bar mouse down handle.
+     * Input: event
+     * @method bar_mouseDownHandler
+     * @return -
+     */
     var bar_mouseDownHandler = function(event) {
       event.preventDefault();
       event.stopPropagation();
@@ -1216,16 +1252,34 @@ var simcir = function($) {
       $(document).on('mousemove', bar_mouseMoveHandler);
       $(document).on('mouseup', bar_mouseUpHandler);
     };
+    /**
+     * toolbox scroll bar mouse movement handle.
+     * Input: event
+     * @method bar_mouseMoveHandler
+     * @return -
+     */
     var bar_mouseMoveHandler = function(event) {
       calc(function(unitSize) {
         setValue( (event.pageY - dragPoint.y) / unitSize);
       });
     };
+    /**
+     * toolbox scroll bar mouse up handle.
+     * Input: event
+     * @method bar_mouseUpHandler
+     * @return -
+     */
     var bar_mouseUpHandler = function(event) {
       $(document).off('mousemove', bar_mouseMoveHandler);
       $(document).off('mouseup', bar_mouseUpHandler);
     };
     $bar.on('mousedown', bar_mouseDownHandler);
+    /**
+     * simulate body mouse down handle.
+     * Input: event
+     * @method body_mouseDownHandler
+     * @return -
+     */
     var body_mouseDownHandler = function(event) {
       event.preventDefault();
       event.stopPropagation();
@@ -1240,12 +1294,23 @@ var simcir = function($) {
       }
     };
     $body.on('mousedown', body_mouseDownHandler);
-
+    /**
+     * set size of the simulator.
+     * Input: width, height
+     * @method setSize
+     * @return -
+     */
     var setSize = function(width, height) {
       _width = width;
       _height = height;
       layout();
     };
+    /**
+     * make simulator body layout.
+     * Input: -
+     * @method layout
+     * @return -
+     */
     var layout = function() {
 
       $body.attr({x: 0, y: 0, width: _width, height: _height});
@@ -1261,12 +1326,30 @@ var simcir = function($) {
         transform($bar, 0, _value * unitSize);
       });
     };
+    /**
+     *
+     * Input: f
+     * @method calc
+     * @return -
+     */
     var calc = function(f) {
       f(_height / (_max - _min) );
     };
+    /**
+     *
+     * Input: value
+     * @method setValue
+     * @return -
+     */
     var setValue = function(value) {
       setValues(value, _min, _max, _barSize);
     };
+    /**
+     * set values for making layout of toolbox and scroll bar
+     * Input: value, min, max, barSize
+     * @method setValues
+     * @return -
+     */
     var setValues = function(value, min, max, barSize) {
       value = Math.max(min, Math.min(value, max - barSize) );
       var changed = (value != _value);
@@ -1279,6 +1362,12 @@ var simcir = function($) {
         $scrollbar.trigger('scrollValueChange');
       }
     };
+    /**
+     * get layout values of toolbox and scroll bar
+     * Input: -
+     * @method getValue
+     * @return {value} value
+     */
     var getValue = function() {
       return _value;
     };
@@ -1388,12 +1477,22 @@ var simcir = function($) {
     $workspace.append($devicePane);
     $workspace.append($connectorPane);
     $workspace.append($temporaryPane);
-
+    /**
+     * add device to simulator body
+     * Input: $dev
+     * @method addDevice
+     * @return -
+     */
     var addDevice = function($dev) {
       $devicePane.append($dev);
       $dev.trigger('deviceAdd');
     };
-
+    /**
+     * remove device from simulator body
+     * Input: $dev
+     * @method removeDevice
+     * @return -
+     */
     var removeDevice = function($dev) {
       $dev.trigger('deviceRemove');
       // before remove, disconnect all
@@ -1414,7 +1513,12 @@ var simcir = function($) {
       addDevice($dev);
     });
 
-
+    /**
+     * disconnect nodes connection
+     * Input: $inNode
+     * @method disconnect
+     * @return -
+     */
     var disconnect = function($inNode) {
       var inNode = controller($inNode);
       if (inNode.getOutput() != null) {
@@ -1422,7 +1526,12 @@ var simcir = function($) {
       }
       updateConnectors();
     };
-
+    /**
+     * update connections
+     * Input: -
+     * @method updateConnectors
+     * @return -
+     */
     var updateConnectors = function() {
       $connectorPane.children().remove();
       $devicePane.children('.simcir-device').each(function() {
@@ -1437,7 +1546,12 @@ var simcir = function($) {
         });
       });
     };
-
+    /**
+     * load the toolbox
+     * Input: data
+     * @method loadToolbox
+     * @return -
+     */
     var loadToolbox = function(data) {
       var vgap = 8;
       var y = vgap;
@@ -1450,7 +1564,12 @@ var simcir = function($) {
       });
       controller($scrollbar).setValues(0, 0, y, workspaceHeight);
     };
-
+    /**
+     * get data of all devices
+     * Input: -
+     * @method getData
+     * @return -
+     */
     var getData = function() {
 
       // renumber all id
@@ -1471,6 +1590,12 @@ var simcir = function($) {
       var toolbox = [];
       var devices = [];
       var connectors = [];
+      /**
+       * clone object to json string
+       * Input: obj
+       * @method clone
+       * @return {JSON} JSON.parse(JSON.stringify(obj))
+       */
       var clone = function(obj) {
         return JSON.parse(JSON.stringify(obj) );
       };
@@ -1504,6 +1629,12 @@ var simcir = function($) {
         connectors: connectors
       };
     };
+    /**
+     * get text for the json show of the simulator
+     * Input: -
+     * @method getText
+     * @return {String} buf
+     */
     var getText = function() {
 
       var data = getData();
@@ -1544,7 +1675,12 @@ var simcir = function($) {
 
     var dragMoveHandler = null;
     var dragCompleteHandler = null;
-
+    /**
+     * adjust device position on simulator
+     * Input: $dev
+     * @method adjustDevice
+     * @return -
+     */
     var adjustDevice = function($dev) {
       var pitch = unit / 2;
       var adjust = function(v) { return Math.round(v / pitch) * pitch; };
@@ -1556,7 +1692,12 @@ var simcir = function($) {
           workspaceHeight - size.height) );
       transform($dev, adjust(x), adjust(y) );
     };
-
+    /**
+     * handle connecting a connection
+     * Input: event, $target
+     * @method beginConnect
+     * @return -
+     */
     var beginConnect = function(event, $target) {
       var $srcNode = $target.closest('.simcir-node');
       var off = $workspace.offset();
@@ -1580,7 +1721,12 @@ var simcir = function($) {
         }
       };
     };
-
+    /**
+     * make new dvice when drag a device from toolbox to simulator body
+     * Input: event, $target
+     * @method beginNewDevice
+     * @return -
+     */
     var beginNewDevice = function(event, $target) {
       var $dev = $target.closest('.simcir-device');
       var pos = offset($dev);
@@ -1610,17 +1756,34 @@ var simcir = function($) {
     };
 
     var $selectedDevices = [];
+    /**
+     * make selected value of a device true
+     * Input: $dev
+     * @method addSelected
+     * @return -
+     */
     var addSelected = function($dev) {
       controller($dev).setSelected(true);
       $selectedDevices.push($dev);
     };
+    /**
+     * make all devices not selected
+     * Input: -
+     * @method deselectAll
+     * @return -
+     */
     var deselectAll = function() {
       $devicePane.children('.simcir-device').each(function() {
         controller($(this) ).setSelected(false);
       });
       $selectedDevices = [];
     };
-
+    /**
+     * handles dragging a device movements
+     * Input: event, $target
+     * @method beginMoveDevice
+     * @return -
+     */
     var beginMoveDevice = function(event, $target) {
       var $dev = $target.closest('.simcir-device');
       var pos = transform($dev);
@@ -1662,8 +1825,19 @@ var simcir = function($) {
         });
       };
     };
-
+    /**
+     *
+     * Input: event, $target
+     * @method beginSelectDevice
+     * @return -
+     */
     var beginSelectDevice = function(event, $target) {
+      /**
+       *
+       * Input: rect1, rect2
+       * @method intersect
+       * @return -
+       */
       var intersect = function(rect1, rect2) {
         return !(
             rect1.x > rect2.x + rect2.width ||
@@ -1671,6 +1845,12 @@ var simcir = function($) {
             rect1.x + rect1.width < rect2.x ||
             rect1.y + rect1.height < rect2.y);
       };
+      /**
+       *
+       * Input: p1, p2
+       * @method pointToRect
+       * @return -
+       */
       var pointToRect = function(p1, p2) {
         return {
           x: Math.min(p1.x, p2.x),
@@ -1705,7 +1885,12 @@ var simcir = function($) {
             attr('class', 'simcir-selection-rect') );
       };
     };
-
+    /**
+     * handles what mouse down should does
+     * Input: event
+     * @method mouseDownHandler
+     * @return -
+     */
     var mouseDownHandler = function(event) {
       event.preventDefault();
       event.stopPropagation();
@@ -1724,11 +1909,23 @@ var simcir = function($) {
       $(document).on('mousemove', mouseMoveHandler);
       $(document).on('mouseup', mouseUpHandler);
     };
+    /**
+     * handles what mouse move should does
+     * Input: event
+     * @method mouseMoveHandler
+     * @return -
+     */
     var mouseMoveHandler = function(event) {
       if (dragMoveHandler != null) {
         dragMoveHandler(event);
       }
     };
+    /**
+     * handles what mouse up should does
+     * Input: event
+     * @method mouseUpHandler
+     * @return -
+     */
     var mouseUpHandler = function(event) {
       if (dragCompleteHandler != null) {
         dragCompleteHandler(event);
@@ -1774,6 +1971,12 @@ var simcir = function($) {
       css('width', $workspace.attr('width') + 'px').
       css('height', $workspace.attr('height') + 'px');
     var showData = false;
+    /**
+     * handles toggle between simulator show or data show
+     * Input: -
+     * @method toggle
+     * @return -
+     */
     var toggle = function() {
       $workspace.css('display', !showData? 'inline' : 'none');
       $dataArea.css('display', showData? 'inline' : 'none');
@@ -1876,7 +2079,12 @@ var simcir = function($) {
   };
 
 
-  //for test
+  /**
+   * creates logic gate factory
+   * Input: op, out, draw
+   * @method createLogicGateFactory
+   * @return -
+   */
   var createLogicGateFactory = function(op, out, draw) {
     return function(device) {
       console.log('device',device.$ui[0]);
@@ -1929,6 +2137,12 @@ var simcir = function($) {
       };
     };
   };
+  /**
+   * draw power line
+   * Input: g, x, y, width, height
+   * @method drawPowerLine
+   * @return -
+   */
   var drawPowerLine=function(g, x, y, width, height) {
     //g.moveTo(x, y);
     /*g.lineTo(x + width, y + height / 2);
@@ -1936,6 +2150,12 @@ var simcir = function($) {
      g.lineTo(x, y);*/
     //g.closePath(true);
   };
+  /**
+   * handles power line logic
+   * Input: a
+   * @method powerLine
+   * @return a
+   */
   var powerLine= function(a) { return a; };
   //for test
 

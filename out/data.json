@@ -775,7 +775,19 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 997,
+            "line": 971,
+            "description": "get input and output nodes of a device.\nInput: path",
+            "itemtype": "method",
+            "name": "getNode",
+            "return": {
+                "description": "array of nodes",
+                "type": "Node"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1003,
             "description": "creates dialog.\nInput: title, $content",
             "itemtype": "method",
             "name": "showDialog",
@@ -787,7 +799,40 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 1076,
+            "line": 1042,
+            "description": "dialog mouse down handler.\nInput: event",
+            "itemtype": "method",
+            "name": "dlg_mouseDownHandler",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1063,
+            "description": "dialog mouse movements handler.\nInput: event",
+            "itemtype": "method",
+            "name": "dlg_mouseMoveHandler",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1074,
+            "description": "dialog mouse up handler.\nInput: event",
+            "itemtype": "method",
+            "name": "dlg_mouseUpHandler",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1100,
             "description": "Input: data",
             "itemtype": "method",
             "name": "createDeviceRefFactory",
@@ -799,7 +844,19 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 1149,
+            "line": 1126,
+            "description": "get port description.\nInput: event",
+            "itemtype": "method",
+            "name": "getDesc",
+            "return": {
+                "description": "port.description",
+                "type": "String"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1179,
             "params": [
                 {
                     "name": "factories",
@@ -811,7 +868,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 1155,
+            "line": 1185,
             "params": [
                 {
                     "name": "defaultToolbox",
@@ -823,7 +880,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 1161,
+            "line": 1191,
             "description": "Add device in toolbox and create device factory forthat device.\nInput: type, factory",
             "itemtype": "method",
             "name": "registerDevice",
@@ -834,7 +891,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 1175,
+            "line": 1205,
             "description": "Create scroll bar and controls all of its actions.\nInput: -",
             "itemtype": "method",
             "name": "createScrollbar",
@@ -846,7 +903,118 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 1292,
+            "line": 1239,
+            "description": "toolbox scroll bar mouse down handle.\nInput: event",
+            "itemtype": "method",
+            "name": "bar_mouseDownHandler",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1255,
+            "description": "toolbox scroll bar mouse movement handle.\nInput: event",
+            "itemtype": "method",
+            "name": "bar_mouseMoveHandler",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1266,
+            "description": "toolbox scroll bar mouse up handle.\nInput: event",
+            "itemtype": "method",
+            "name": "bar_mouseUpHandler",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1277,
+            "description": "simulate body mouse down handle.\nInput: event",
+            "itemtype": "method",
+            "name": "body_mouseDownHandler",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1297,
+            "description": "set size of the simulator.\nInput: width, height",
+            "itemtype": "method",
+            "name": "setSize",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1308,
+            "description": "make simulator body layout.\nInput: -",
+            "itemtype": "method",
+            "name": "layout",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1329,
+            "description": "Input: f",
+            "itemtype": "method",
+            "name": "calc",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1338,
+            "description": "Input: value",
+            "itemtype": "method",
+            "name": "setValue",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1347,
+            "description": "set values for making layout of toolbox and scroll bar\nInput: value, min, max, barSize",
+            "itemtype": "method",
+            "name": "setValues",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1365,
+            "description": "get layout values of toolbox and scroll bar\nInput: -",
+            "itemtype": "method",
+            "name": "getValue",
+            "return": {
+                "description": "value",
+                "type": "Value"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1381,
             "description": "Generates unigue id.\nInput: -",
             "itemtype": "method",
             "name": "getUniqueId",
@@ -858,7 +1026,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 1304,
+            "line": 1393,
             "description": "Create the whole work spaces and handle everything happens inside.\nInput: data",
             "itemtype": "method",
             "name": "createWorkspace",
@@ -870,7 +1038,229 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 1763,
+            "line": 1480,
+            "description": "add device to simulator body\nInput: $dev",
+            "itemtype": "method",
+            "name": "addDevice",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1490,
+            "description": "remove device from simulator body\nInput: $dev",
+            "itemtype": "method",
+            "name": "removeDevice",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1516,
+            "description": "disconnect nodes connection\nInput: $inNode",
+            "itemtype": "method",
+            "name": "disconnect",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1529,
+            "description": "update connections\nInput: -",
+            "itemtype": "method",
+            "name": "updateConnectors",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1549,
+            "description": "load the toolbox\nInput: data",
+            "itemtype": "method",
+            "name": "loadToolbox",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1567,
+            "description": "get data of all devices\nInput: -",
+            "itemtype": "method",
+            "name": "getData",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1593,
+            "description": "clone object to json string\nInput: obj",
+            "itemtype": "method",
+            "name": "clone",
+            "return": {
+                "description": "JSON.parse(JSON.stringify(obj))",
+                "type": "JSON"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1632,
+            "description": "get text for the json show of the simulator\nInput: -",
+            "itemtype": "method",
+            "name": "getText",
+            "return": {
+                "description": "buf",
+                "type": "String"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1678,
+            "description": "adjust device position on simulator\nInput: $dev",
+            "itemtype": "method",
+            "name": "adjustDevice",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1695,
+            "description": "handle connecting a connection\nInput: event, $target",
+            "itemtype": "method",
+            "name": "beginConnect",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1724,
+            "description": "make new dvice when drag a device from toolbox to simulator body\nInput: event, $target",
+            "itemtype": "method",
+            "name": "beginNewDevice",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1759,
+            "description": "make selected value of a device true\nInput: $dev",
+            "itemtype": "method",
+            "name": "addSelected",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1769,
+            "description": "make all devices not selected\nInput: -",
+            "itemtype": "method",
+            "name": "deselectAll",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1781,
+            "description": "handles dragging a device movements\nInput: event, $target",
+            "itemtype": "method",
+            "name": "beginMoveDevice",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1828,
+            "description": "Input: event, $target",
+            "itemtype": "method",
+            "name": "beginSelectDevice",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1835,
+            "description": "Input: rect1, rect2",
+            "itemtype": "method",
+            "name": "intersect",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1848,
+            "description": "Input: p1, p2",
+            "itemtype": "method",
+            "name": "pointToRect",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1888,
+            "description": "handles what mouse down should does\nInput: event",
+            "itemtype": "method",
+            "name": "mouseDownHandler",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1912,
+            "description": "handles what mouse move should does\nInput: event",
+            "itemtype": "method",
+            "name": "mouseMoveHandler",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1923,
+            "description": "handles what mouse up should does\nInput: event",
+            "itemtype": "method",
+            "name": "mouseUpHandler",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 1960,
             "description": "setup simulator and workspace and handles switching between json view and circuit view.\nInput: $placeHolder, data",
             "itemtype": "method",
             "name": "setupSimcir",
@@ -882,12 +1272,56 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 1798,
+            "line": 1974,
+            "description": "handles toggle between simulator show or data show\nInput: -",
+            "itemtype": "method",
+            "name": "toggle",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 2001,
             "description": "Make HTML view based on JSON data for doc view.\nInput: $placeHolder",
             "itemtype": "method",
             "name": "setupSimcirDoc",
             "return": {
                 "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 2082,
+            "description": "creates logic gate factory\nInput: op, out, draw",
+            "itemtype": "method",
+            "name": "createLogicGateFactory",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 2140,
+            "description": "draw power line\nInput: g, x, y, width, height",
+            "itemtype": "method",
+            "name": "drawPowerLine",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 2153,
+            "description": "handles power line logic\nInput: a",
+            "itemtype": "method",
+            "name": "powerLine",
+            "return": {
+                "description": "a"
             },
             "class": "simcir"
         },
@@ -923,11 +1357,11 @@
         },
         {
             "message": "Missing item type",
-            "line": " public/js/simcirjs/simcir.js:1149"
+            "line": " public/js/simcirjs/simcir.js:1179"
         },
         {
             "message": "Missing item type",
-            "line": " public/js/simcirjs/simcir.js:1155"
+            "line": " public/js/simcirjs/simcir.js:1185"
         },
         {
             "message": "Missing item type\nCreated by ehsangharaei on 13/10/2016.",
