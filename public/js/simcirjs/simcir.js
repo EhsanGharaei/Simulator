@@ -656,14 +656,23 @@ var simcir = function($) {
         var powerLineLength = 200;
 
 
-        var $body = createSVGElement('path')
-            .attr('class', 'power-line  simcir-device-body').attr('d', 'M '+0+' '+w/2+' L '+powerLineLength+' '+w/2 );
+        var $body = createSVGElement('path').attr('class', 'power-line  simcir-device-body').attr('d', 'M '+0+' '+w/2+' L '+powerLineLength+' '+w/2 );
+        var $icon = createSVGElement('image').attr('href', './public/images/flash.png').attr('height', 15).attr('width', 15).attr('x', -25).attr('y', 7);
       }
       else{
         var $body = createSVGElement('rect').attr('class', 'simcir-device-body').attr('rx', 2).attr('ry', 2);
-      }
+        if(device.deviceDef.type =='Transformer')
+          var $icon = createSVGElement('image').attr('href', './public/images/transformer.png').attr('height', 24).attr('width', 24).attr('x', 4).attr('y',4);
+        if(device.deviceDef.type =='Nuclear power plant')
+          var $icon = createSVGElement('image').attr('href', './public/images/nuclearPowerPlant.png').attr('height', 28).attr('width', 28).attr('x', 2).attr('y',2);
+        if(device.deviceDef.type =='windmill')
+          var $icon = createSVGElement('image').attr('href', './public/images/windmill.png').attr('height', 28).attr('width', 28).attr('x', 2).attr('y',2);
 
+      }
+      device.$ui.prepend($icon);
       device.$ui.prepend($body);
+
+
 
       var $label = createLabel(label).attr('class', 'simcir-device-label').attr('text-anchor', 'middle');
       device.$ui.on('deviceLabelChange', function () {
