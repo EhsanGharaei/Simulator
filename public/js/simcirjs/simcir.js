@@ -55,15 +55,43 @@ var simcir = function($) {
   var graphics = function($target) {
     var attr = {};
     var buf = '';
+    /**
+     * It move pointer of starting drowing element.
+     * Input: x, y
+     *
+     * @method moveTo
+     * @return -
+     */
     var moveTo = function(x, y) {
       buf += ' M ' + x + ' ' + y;
     };
+    /**
+     * It draw a line
+     * Input: x, y
+     *
+     * @method lineTo
+     * @return -
+     */
     var lineTo = function(x, y) {
       buf += ' L ' + x + ' ' + y;
     };
+    /**
+     * It draw a curve
+     * Input: x1, y1, x, y
+     *
+     * @method curveTo
+     * @return -
+     */
     var curveTo = function(x1, y1, x, y) {
       buf += ' Q ' + x1 + ' ' + y1 + ' ' + x + ' ' + y;
     };
+    /**
+     * It close path in a drawing
+     * Input: boolean close
+     *
+     * @method closePath
+     * @return -
+     */
     var closePath = function(close) {
       if (close) {
         // really close path.
@@ -73,10 +101,24 @@ var simcir = function($) {
           attr('d', buf).attr(attr) );
       buf = '';
     };
+    /**
+     * It draws rectangular
+     * Input: x, y, width, height
+     *
+     * @method drawRect
+     * @return -
+     */
     var drawRect = function(x, y, width, height) {
       $target.append(createSVGElement('rect').
           attr({x: x, y: y, width: width, height: height}).attr(attr) );
     };
+    /**
+     * It draws circle
+     * Input: x, y, r
+     *
+     * @method drawCircle
+     * @return -
+     */
     var drawCircle = function(x, y, r) {
       $target.append(createSVGElement('circle').
           attr({cx: x, cy: y, r: r}).attr(attr) );
@@ -158,6 +200,13 @@ var simcir = function($) {
     var attrX = 'simcir-transform-x';
     var attrY = 'simcir-transform-y';
     var attrRotate = 'simcir-transform-rotate';
+    /**
+     * -
+     * Input: $o, k
+     *
+     * @method num
+     * @return {Integer} v? +v : 0
+     */
     var num = function($o, k) {
       var v = $o.attr(k);
       return v? +v : 0;
@@ -241,12 +290,24 @@ var simcir = function($) {
     var delay = 50; // ms
     var limit = 40; // ms
     var _queue = null;
+    /**
+     * add event to events queue.
+     * Input: event
+     * @method postEvent
+     * @return -
+     */
     var postEvent = function(event) {
       if (_queue == null) {
         _queue = [];
       }
       _queue.push(event);
     };
+    /**
+     * dispatch event.
+     * Input: -
+     * @method dispatchEvent
+     * @return -
+     */
     var dispatchEvent = function() {
       var queue = _queue;
       _queue = null;
@@ -255,9 +316,21 @@ var simcir = function($) {
         e.target.trigger(e.type);
       }
     };
+    /**
+     * get current time.
+     * Input: -
+     * @method getTime
+     * @return {Date} current time
+     */
     var getTime = function() {
       return new Date().getTime();
     };
+    /**
+     * check events timing if it is expired remove from queue.
+     * Input: -
+     * @method timerHandler
+     * @return -
+     */
     var timerHandler = function() {
       var start = getTime();
       while (_queue != null && getTime() - start < limit) {
@@ -337,6 +410,12 @@ var simcir = function($) {
    */
   var createNodeController = function(node) {
     var _value = null;
+    /**
+     * set node value and post its event.
+     * Input: value, force
+     * @method setValue
+     * @return -
+     */
     var setValue = function(value, force) {
       if (_value === value && !force) {
         return;
@@ -344,6 +423,12 @@ var simcir = function($) {
       _value = value;
       eventQueue.postEvent({target: node.$ui, type: 'nodeValueChange'});
     };
+    /**
+     * set node value.
+     * Input: value, force
+     * @method getValue
+     * @return {value} value
+     */
     var getValue = function() {
       return _value;
     };
@@ -371,6 +456,12 @@ var simcir = function($) {
         }
       });
       node.$ui.append($circle);
+      /**
+       * set node label.
+       * Input: text, align
+       * @method appendLabel
+       * @return -
+       */
       var appendLabel = function(text, align) {
         var $label = createLabel(text).
           attr('class', 'simcir-node-label');
@@ -425,6 +516,12 @@ var simcir = function($) {
     var setOutput = function(outNode) {
       output = outNode;
     };
+    /**
+     * get output.
+     * Input: -
+     * @method getOutput
+     * @return {output} output;
+     */
     var getOutput = function() {
       return output;
     };
@@ -442,12 +539,24 @@ var simcir = function($) {
   var createOutputNodeController = function(node) {
     var inputs = [];
     var super_setValue = node.setValue;
+    /**
+     * set value of input node.
+     * Input: value
+     * @method setValue
+     * @return -
+     */
     var setValue = function(value) {
       super_setValue(value);
       $.each(inputs, function(i, inputNode) {
         inputNode.setValue(value);
       });
     };
+    /**
+     * connect 2 nodes.
+     * Input: inNode
+     * @method connectTo
+     * @return -
+     */
     var connectTo = function(inNode) {
       if (inNode.getOutput() != null) {
         inNode.getOutput().disconnectFrom(inNode);
@@ -456,6 +565,12 @@ var simcir = function($) {
       inputs.push(inNode);
       inNode.setValue(node.getValue(), true);
     };
+    /**
+     * disconnect 2 nodes.
+     * Input: inNode
+     * @method disconnectFrom
+     * @return -
+     */
     var disconnectFrom = function(inNode) {
       if (inNode.getOutput() != node) {
         throw 'not connected.';
@@ -466,6 +581,12 @@ var simcir = function($) {
         return v != inNode;
       });
     };
+    /**
+     * get inputs.
+     * Input: -
+     * @method getInputs
+     * @return {input} input
+     */
     var getInputs = function() {
       return inputs;
     };
@@ -512,6 +633,12 @@ var simcir = function($) {
     var outputs = [];
     var device_def_type=device.deviceDef.type;
     var device_num_of_inputs=device.numOfInputs?device.numOfInputs:'';
+    /**
+     * add input node to a device.
+     * Input: label, description,numOfInput,currentInput
+     * @method addInput
+     * @return {node} node
+     */
     var addInput = function(label, description,numOfInput,currentInput) {
       var $node = createNode('in', label, description, device.headless,device_def_type,numOfInput,currentInput);
 
@@ -525,6 +652,12 @@ var simcir = function($) {
       inputs.push(node);
       return node;
     };
+    /**
+     * add output node to a device.
+     * Input: label, description
+     * @method addOutput
+     * @return {node} node
+     */
     var addOutput = function(label, description) {
       var $node = createNode('out', label, description, device.headless,device_def_type,'','');
       if (!device.headless) {
@@ -534,12 +667,30 @@ var simcir = function($) {
       outputs.push(node);
       return node;
     };
+    /**
+     * get inputs of a device.
+     * Input: -
+     * @method getInputs
+     * @return {array of node} inputs
+     */
     var getInputs = function() {
       return inputs;
     };
+    /**
+     * get outputs of a device.
+     * Input: -
+     * @method getInputs
+     * @return {array of node} outputs
+     */
     var getOutputs = function() {
       return outputs;
     };
+    /**
+     * disconnect all ofthe inputs and outputs of a device.
+     * Input: -
+     * @method disconnectAll
+     * @return -
+     */
     var disconnectAll = function() {
       $.each(getInputs(), function(i, inNode) {
         var outNode = inNode.getOutput();
@@ -555,10 +706,22 @@ var simcir = function($) {
     };
 
     var selected = false;
+    /**
+     * set selected class for a device.
+     * Input: value
+     * @method setSelected
+     * @return -
+     */
     var setSelected = function(value) {
       selected = value;
       device.$ui.trigger('deviceSelect');
     };
+    /**
+     * check if device is selected or not.
+     * Input: -
+     * @method isSelected
+     * @return {boolean}selected
+     */
     var isSelected = function() {
       return selected;
     };
@@ -568,15 +731,32 @@ var simcir = function($) {
     if (typeof label == 'undefined') {
       label = defaultLabel;
     }
+    /**
+     * set label for a device.
+     * Input: value
+     * @method setLabel
+     * @return -
+     */
     var setLabel = function(value) {
       value = value.replace(/^\s+|\s+$/g, '');
       label = value || defaultLabel;
       device.$ui.trigger('deviceLabelChange');
     };
+    /**
+     * get label of a device.
+     * Input: -
+     * @method getLabel
+     * @return {String} label
+     */
     var getLabel = function() {
       return label;
     };
-
+    /**
+     * get size of the device.
+     * Input: -
+     * @method getSize
+     * @return {Object} width, height
+     */
     var getSize = function() {
       var nodes = Math.max(device.getInputs().length,
           device.getOutputs().length);
@@ -584,7 +764,12 @@ var simcir = function($) {
         height: unit * Math.max(2, device.halfPitch?
             (nodes + 1) / 2 : nodes)};
     };
-
+    /**
+     * manage Layout UI of a device.
+     * Input: -
+     * @method layoutUI
+     * @return -
+     */
     var layoutUI = function() {
 
       var size = device.getSize();
@@ -596,6 +781,12 @@ var simcir = function($) {
         attr({x: 0, y: 0, width: w, height: h});
 
       var pitch = device.halfPitch? unit / 2 : unit;
+      /**
+       * manage Layout UI of nodes of a device.
+       * Input: nodes, x , type
+       * @method layoutNodes
+       * @return -
+       */
       var layoutNodes = function(nodes, x , type) {
         var offset;
         if(type=='') {
@@ -636,7 +827,12 @@ var simcir = function($) {
       device.$ui.children('.simcir-device-label').
         attr({x: w / 2, y: h + fontSize});
     };
-
+    /**
+     * creates UI of a device and manage it.
+     * Input: -
+     * @method createUI
+     * @return -
+     */
     var createUI = function() {
 
       device.$ui.attr('class', 'simcir-device');
@@ -679,7 +875,12 @@ var simcir = function($) {
         $label.text(getLabel());
       });
 
-
+      /**
+       * handles double click on label
+       * Input: -
+       * @method label_dblClickHandler
+       * @return -
+       */
       var label_dblClickHandler = function() {
         // open library,
         event.preventDefault();
@@ -1204,7 +1405,7 @@ var simcir = function($) {
     //---------added by ehsangharaei---------------
     $("#place-power-line").click(function() {
       newpowerLineLength=$("#lengthFromModal").val()?$("#lengthFromModal").val():200;
-      var num_of_inputs=$("#numberOfInputsFromModal").val()?$("#numberOfInputsFromModal").val():2;
+      var num_of_inputs=$("#numberOfInputsFromModal").val()?$("#numberOfInputsFromModal").val():5;
       registerDevice('Power line', createLogicGateFactory(num_of_inputs, powerLine, drawPowerLine) );
       var $dev=$devicePane.children('.simcir-device').find('.power-line').closest('.simcir-device');
       $dev = createDevice(controller($dev).deviceDef);

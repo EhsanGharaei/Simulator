@@ -91,7 +91,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 22,
+            "line": 24,
             "description": "It creates SVG element.\nInput: tagNeme",
             "itemtype": "method",
             "name": "createSVGElement",
@@ -103,7 +103,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 33,
+            "line": 35,
             "description": "It creates SVG.\nInput: w,h",
             "itemtype": "method",
             "name": "createSVG",
@@ -115,7 +115,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 47,
+            "line": 49,
             "description": "It creates some functions for drawing.\nInput: $target",
             "itemtype": "method",
             "name": "graphics",
@@ -127,7 +127,73 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 92,
+            "line": 58,
+            "description": "It move pointer of starting drowing element.\nInput: x, y",
+            "itemtype": "method",
+            "name": "moveTo",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 68,
+            "description": "It draw a line\nInput: x, y",
+            "itemtype": "method",
+            "name": "lineTo",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 78,
+            "description": "It draw a curve\nInput: x1, y1, x, y",
+            "itemtype": "method",
+            "name": "curveTo",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 88,
+            "description": "It close path in a drawing\nInput: boolean close",
+            "itemtype": "method",
+            "name": "closePath",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 104,
+            "description": "It draws rectangular\nInput: x, y, width, height",
+            "itemtype": "method",
+            "name": "drawRect",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 115,
+            "description": "It draws circle\nInput: x, y, r",
+            "itemtype": "method",
+            "name": "drawCircle",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 136,
             "description": "split class names.\nInput: $o,f",
             "itemtype": "method",
             "name": "eachClass",
@@ -139,7 +205,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 104,
+            "line": 148,
             "description": "add or remove class.\nInput: $o,className, remove",
             "itemtype": "method",
             "name": "addClass",
@@ -151,7 +217,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 125,
+            "line": 169,
             "description": "remove class.\nInput: $o,classNeme",
             "itemtype": "method",
             "name": "removeClass",
@@ -163,7 +229,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 134,
+            "line": 178,
             "description": "search to find if it has the className.\nInput: $o,className",
             "itemtype": "method",
             "name": "hasClass",
@@ -175,7 +241,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 149,
+            "line": 193,
             "description": "move or rotate attribute.\nInput: -",
             "itemtype": "method",
             "name": "transform",
@@ -187,7 +253,19 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 179,
+            "line": 203,
+            "description": "-\nInput: $o, k",
+            "itemtype": "method",
+            "name": "num",
+            "return": {
+                "description": "v? +v : 0",
+                "type": "Integer"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 230,
             "description": "offset an element.\nInput: $o",
             "itemtype": "method",
             "name": "offset",
@@ -199,7 +277,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 196,
+            "line": 247,
             "description": "set \"pointer-events\" css class value to \"visiblePainted\" if enable else 'none'.\nInput: $o,enable",
             "itemtype": "method",
             "name": "enableEvents",
@@ -210,7 +288,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 205,
+            "line": 256,
             "description": "set css '-webkit-user-select' value to 'none'.\nInput: $o",
             "itemtype": "method",
             "name": "disableSelection",
@@ -221,7 +299,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 216,
+            "line": 267,
             "description": "???????????\nInput: -",
             "itemtype": "method",
             "name": "controller",
@@ -233,7 +311,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 232,
+            "line": 283,
             "description": "events handler.\nInput: -",
             "itemtype": "method",
             "name": "eventQueue",
@@ -245,7 +323,52 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 272,
+            "line": 293,
+            "description": "add event to events queue.\nInput: event",
+            "itemtype": "method",
+            "name": "postEvent",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 305,
+            "description": "dispatch event.\nInput: -",
+            "itemtype": "method",
+            "name": "dispatchEvent",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 319,
+            "description": "get current time.\nInput: -",
+            "itemtype": "method",
+            "name": "getTime",
+            "return": {
+                "description": "current time",
+                "type": "Date"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 328,
+            "description": "check events timing if it is expired remove from queue.\nInput: -",
+            "itemtype": "method",
+            "name": "timerHandler",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 347,
             "params": [
                 {
                     "name": "unit\nit",
@@ -257,7 +380,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 278,
+            "line": 353,
             "params": [
                 {
                     "name": "fontSize\nit",
@@ -269,7 +392,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 284,
+            "line": 359,
             "description": "create text label.\nInput: text",
             "itemtype": "method",
             "name": "createLabel",
@@ -281,7 +404,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 295,
+            "line": 370,
             "description": "creates node and its controller, input, output.\nInput: type,label,description, headless",
             "itemtype": "method",
             "name": "createNode",
@@ -293,7 +416,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 319,
+            "line": 394,
             "description": "checks if the node is active or not.\nInput: $o",
             "itemtype": "method",
             "name": "isActiveNode",
@@ -305,7 +428,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 329,
+            "line": 404,
             "description": "controls everything about a node, setvalue, post event, get value, append label,\nadd class, remove class, handel inputs and outputs.\nInput: -",
             "itemtype": "method",
             "name": "createNodeController",
@@ -317,7 +440,41 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 409,
+            "line": 413,
+            "description": "set node value and post its event.\nInput: value, force",
+            "itemtype": "method",
+            "name": "setValue",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 426,
+            "description": "set node value.\nInput: value, force",
+            "itemtype": "method",
+            "name": "getValue",
+            "return": {
+                "description": "value",
+                "type": "Value"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 459,
+            "description": "set node label.\nInput: text, align",
+            "itemtype": "method",
+            "name": "appendLabel",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 508,
             "description": "extend node with setoutput and getoutput.\nInput: node",
             "itemtype": "method",
             "name": "createInputNodeController",
@@ -329,7 +486,19 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 428,
+            "line": 519,
+            "description": "get output.\nInput: -",
+            "itemtype": "method",
+            "name": "getOutput",
+            "return": {
+                "description": "output;",
+                "type": "Output"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 533,
             "description": "extend node with setValue, getInputs, connectTo, disconnectFrom.\nInput: node",
             "itemtype": "method",
             "name": "createOutputNodeController",
@@ -341,7 +510,52 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 471,
+            "line": 542,
+            "description": "set value of input node.\nInput: value",
+            "itemtype": "method",
+            "name": "setValue",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 554,
+            "description": "connect 2 nodes.\nInput: inNode",
+            "itemtype": "method",
+            "name": "connectTo",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 568,
+            "description": "disconnect 2 nodes.\nInput: inNode",
+            "itemtype": "method",
+            "name": "disconnectFrom",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 584,
+            "description": "get inputs.\nInput: -",
+            "itemtype": "method",
+            "name": "getInputs",
+            "return": {
+                "description": "input",
+                "type": "Input"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 600,
             "description": "creates device, add device controller.\nInput: deviceDef, headless",
             "itemtype": "method",
             "name": "createDevice",
@@ -353,7 +567,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 495,
+            "line": 624,
             "description": "creates device controller.\nInput: device",
             "itemtype": "method",
             "name": "createDeviceController",
@@ -365,7 +579,168 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 693,
+            "line": 636,
+            "description": "add input node to a device.\nInput: label, description,numOfInput,currentInput",
+            "itemtype": "method",
+            "name": "addInput",
+            "return": {
+                "description": "node",
+                "type": "Node"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 655,
+            "description": "add output node to a device.\nInput: label, description",
+            "itemtype": "method",
+            "name": "addOutput",
+            "return": {
+                "description": "node",
+                "type": "Node"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 670,
+            "description": "get inputs of a device.\nInput: -",
+            "itemtype": "method",
+            "name": "getInputs",
+            "return": {
+                "description": "inputs",
+                "type": "Array of node"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 679,
+            "description": "get outputs of a device.\nInput: -",
+            "itemtype": "method",
+            "name": "getInputs",
+            "return": {
+                "description": "outputs",
+                "type": "Array of node"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 688,
+            "description": "disconnect all ofthe inputs and outputs of a device.\nInput: -",
+            "itemtype": "method",
+            "name": "disconnectAll",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 709,
+            "description": "set selected class for a device.\nInput: value",
+            "itemtype": "method",
+            "name": "setSelected",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 719,
+            "description": "check if device is selected or not.\nInput: -",
+            "itemtype": "method",
+            "name": "isSelected",
+            "return": {
+                "description": "selected",
+                "type": "Boolean"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 734,
+            "description": "set label for a device.\nInput: value",
+            "itemtype": "method",
+            "name": "setLabel",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 745,
+            "description": "get label of a device.\nInput: -",
+            "itemtype": "method",
+            "name": "getLabel",
+            "return": {
+                "description": "label",
+                "type": "String"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 754,
+            "description": "get size of the device.\nInput: -",
+            "itemtype": "method",
+            "name": "getSize",
+            "return": {
+                "description": "width, height",
+                "type": "Object"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 767,
+            "description": "manage Layout UI of a device.\nInput: -",
+            "itemtype": "method",
+            "name": "layoutUI",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 784,
+            "description": "manage Layout UI of nodes of a device.\nInput: nodes, x , type",
+            "itemtype": "method",
+            "name": "layoutNodes",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 830,
+            "description": "creates UI of a device and manage it.\nInput: -",
+            "itemtype": "method",
+            "name": "createUI",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 878,
+            "description": "handles double click on label\nInput: -",
+            "itemtype": "method",
+            "name": "label_dblClickHandler",
+            "return": {
+                "description": "-"
+            },
+            "class": "simcir"
+        },
+        {
+            "file": "public/js/simcirjs/simcir.js",
+            "line": 936,
             "description": "creates connector.\nInput: x1, y1, x2, y2",
             "itemtype": "method",
             "name": "createConnector",
@@ -377,7 +752,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 704,
+            "line": 947,
             "description": "creates connector.\nInput: x1, y1, x2, y2",
             "itemtype": "method",
             "name": "connect",
@@ -388,7 +763,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 719,
+            "line": 962,
             "description": "creates device element.\nInput: data, headless",
             "itemtype": "method",
             "name": "buildCircuit",
@@ -400,7 +775,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 754,
+            "line": 997,
             "description": "creates dialog.\nInput: title, $content",
             "itemtype": "method",
             "name": "showDialog",
@@ -412,7 +787,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 833,
+            "line": 1076,
             "description": "Input: data",
             "itemtype": "method",
             "name": "createDeviceRefFactory",
@@ -424,7 +799,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 906,
+            "line": 1149,
             "params": [
                 {
                     "name": "factories",
@@ -436,7 +811,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 912,
+            "line": 1155,
             "params": [
                 {
                     "name": "defaultToolbox",
@@ -448,7 +823,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 918,
+            "line": 1161,
             "description": "Add device in toolbox and create device factory forthat device.\nInput: type, factory",
             "itemtype": "method",
             "name": "registerDevice",
@@ -459,7 +834,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 932,
+            "line": 1175,
             "description": "Create scroll bar and controls all of its actions.\nInput: -",
             "itemtype": "method",
             "name": "createScrollbar",
@@ -471,7 +846,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 1049,
+            "line": 1292,
             "description": "Generates unigue id.\nInput: -",
             "itemtype": "method",
             "name": "getUniqueId",
@@ -483,7 +858,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 1061,
+            "line": 1304,
             "description": "Create the whole work spaces and handle everything happens inside.\nInput: data",
             "itemtype": "method",
             "name": "createWorkspace",
@@ -495,7 +870,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 1521,
+            "line": 1763,
             "description": "setup simulator and workspace and handles switching between json view and circuit view.\nInput: $placeHolder, data",
             "itemtype": "method",
             "name": "setupSimcir",
@@ -507,7 +882,7 @@
         },
         {
             "file": "public/js/simcirjs/simcir.js",
-            "line": 1556,
+            "line": 1798,
             "description": "Make HTML view based on JSON data for doc view.\nInput: $placeHolder",
             "itemtype": "method",
             "name": "setupSimcirDoc",
@@ -540,19 +915,19 @@
         },
         {
             "message": "Missing item type",
-            "line": " public/js/simcirjs/simcir.js:272"
+            "line": " public/js/simcirjs/simcir.js:347"
         },
         {
             "message": "Missing item type",
-            "line": " public/js/simcirjs/simcir.js:278"
+            "line": " public/js/simcirjs/simcir.js:353"
         },
         {
             "message": "Missing item type",
-            "line": " public/js/simcirjs/simcir.js:906"
+            "line": " public/js/simcirjs/simcir.js:1149"
         },
         {
             "message": "Missing item type",
-            "line": " public/js/simcirjs/simcir.js:912"
+            "line": " public/js/simcirjs/simcir.js:1155"
         },
         {
             "message": "Missing item type\nCreated by ehsangharaei on 13/10/2016.",

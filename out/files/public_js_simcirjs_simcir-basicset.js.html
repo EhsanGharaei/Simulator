@@ -143,7 +143,7 @@
 
   var createLogicGateFactory = function(op, out, draw) {
     return function(device) {
-      if(device.deviceDef.type ==&#x27;Power line&#x27;) {
+      if(device.deviceDef.type ==&#x27;Power line&#x27; || device.deviceDef.type ==&#x27;windmill&#x27; || device.deviceDef.type ==&#x27;Nuclear power plant&#x27;) {
         var numInputs=op;
       }
       else {
@@ -214,9 +214,9 @@
 
   // register logic gates
   $s.registerDevice(&#x27;Transformer&#x27;, createLogicGateFactory(null, BUF, drawBUF) );
-  $s.registerDevice(&#x27;Nuclear power plant&#x27;, createLogicGateFactory(null, NOT, drawNOT) );
-  $s.registerDevice(&#x27;windmill&#x27;, createLogicGateFactory(null, BUF, drawAND) );
-  $s.registerDevice(&#x27;Power line&#x27;, createLogicGateFactory(0, powerLine, drawPowerLine) );
+  $s.registerDevice(&#x27;Nuclear power plant&#x27;, createLogicGateFactory(0, NOT, drawNOT) );
+  $s.registerDevice(&#x27;windmill&#x27;, createLogicGateFactory(0, BUF, drawAND) );
+  $s.registerDevice(&#x27;Power line&#x27;, createLogicGateFactory(5, powerLine, drawPowerLine) );
 
 
 
