@@ -209,6 +209,12 @@ TABLE.simcir-doc-params-table TD {
   background-color: #f0f0f0;
 }
 /*--------added by ehsangharaei-------*/
-.power-line{
-  stroke-width: 5px;
+.power-line-hv{
+  stroke-width: 7px;
+}
+.power-line-mv{
+  stroke-width: 7px;
+}
+.power-line-lv{
+  stroke-width: 7px;
 }

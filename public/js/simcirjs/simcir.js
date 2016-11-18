@@ -20,6 +20,7 @@
 var simcir = function($) {
 
   var newpowerLineLength=200;
+  var powerLineVoltageLevel="HV";
 
   /**
    * It creates SVG element.
@@ -336,7 +337,7 @@ var simcir = function($) {
       while (_queue != null && getTime() - start < limit) {
         dispatchEvent();
       }
-      window.setTimeout(timerHandler, 
+      window.setTimeout(timerHandler,
         Math.max(delay - limit, delay - (getTime() - start) ) );
     };
     timerHandler();
@@ -437,7 +438,7 @@ var simcir = function($) {
 
       node.$ui.attr('class', 'simcir-node simcir-node-type-' + node.type);
       //added by ehsangharaei
-      if(node.device_def_type=='Power line' && node.device_num_of_inputs && node.device_num_of_inputs!='') {
+      if((node.device_def_type=='Power line (MV)'||node.device_def_type=='Power line (HV)'||node.device_def_type=='Power line (LV)') && node.device_num_of_inputs && node.device_num_of_inputs!='') {
         var dividedLength=newpowerLineLength/node.device_num_of_inputs;
         //var $circle = createSVGElement('circle').attr({cx: dividedLength*node.currentInput, cy: 16, r: 4});
         var $circle = createSVGElement('circle').attr({cx: 0, cy: 0, r: 4});
@@ -814,7 +815,7 @@ var simcir = function($) {
       };
 
 
-      if(device.deviceDef.type =='Power line') {
+      if(device.deviceDef.type =='Power line (MV)'|| device.deviceDef.type =='Power line (HV)' || device.deviceDef.type =='Power line (LV)') {
         layoutNodes(getInputs(), 0, 'powerLineInput');
         layoutNodes(getOutputs(), newpowerLineLength, 'powerLineOutput');
       }
@@ -845,14 +846,19 @@ var simcir = function($) {
       });
       //--------added by ehsangharaei-------------------
 
-      if(device.deviceDef.type =='Power line') {
+      if(device.deviceDef.type =='Power line (MV)' || device.deviceDef.type =='Power line (HV)' || device.deviceDef.type =='Power line (LV)') {
         var size = device.getSize();
         var w = size.width;
         var h = size.height;
         var powerLineLength = 200;
 
+        if(device.deviceDef.type =='Power line (HV)')
+          var $body = createSVGElement('path').attr('class', 'power-line-hv  simcir-device-body').attr('d', 'M '+0+' '+w/2+' L '+powerLineLength+' '+w/2 );
+        else if(device.deviceDef.type =='Power line (MV)')
+          var $body = createSVGElement('path').attr('class', 'power-line-mv  simcir-device-body').attr('d', 'M '+0+' '+w/2+' L '+powerLineLength+' '+w/2 );
+        else if(device.deviceDef.type =='Power line (LV)')
+          var $body = createSVGElement('path').attr('class', 'power-line-lv  simcir-device-body').attr('d', 'M '+0+' '+w/2+' L '+powerLineLength+' '+w/2 );
 
-        var $body = createSVGElement('path').attr('class', 'power-line  simcir-device-body').attr('d', 'M '+0+' '+w/2+' L '+powerLineLength+' '+w/2 );
         var $icon = createSVGElement('image').attr('href', './public/images/flash.png').attr('height', 15).attr('width', 15).attr('x', -25).attr('y', 7);
       }
       else{
@@ -869,7 +875,10 @@ var simcir = function($) {
       device.$ui.prepend($body);
 
 
-
+      if(device.deviceDef.type =='Power line (MV)' || device.deviceDef.type =='Power line (HV)' || device.deviceDef.type =='Power line (LV)') {
+        //label=powerLineVoltageLevel;
+        label=device.deviceDef.type.substr(12,2);
+      }
       var $label = createLabel(label).attr('class', 'simcir-device-label').attr('text-anchor', 'middle');
       device.$ui.on('deviceLabelChange', function () {
         $label.text(getLabel());
@@ -1199,7 +1208,7 @@ var simcir = function($) {
       factory = createDeviceRefFactory(factory);
     }
     factories[type] = factory;
-    if(type!='Power line')
+    if(type!='Power line (MV)' && type!='Power line (LV)' && type!='Power line (HV)')
       defaultToolbox.push({type: type});
   };
   /**
@@ -1399,11 +1408,13 @@ var simcir = function($) {
   var createWorkspace = function(data) {
 
     data = $.extend({
-      width: 900, //edited by ehsangharaei
+      width: 1100, //edited by ehsangharaei
       height: 500, //edited by ehsangharaei
       showToolbox: true,
       toolbox: defaultToolbox,
-      devices: [{"type":"Power line","id":"dev0","x":100,"y":50,"label":"Power line"}],
+      devices: [{"type":"Power line (MV)","id":"dev0","x":350,"y":200,"label":"MV"},
+                {"type":"Power line (LV)","id":"dev0","x":600,"y":350,"label":"LV"},
+                {"type":"Power line (HV)","id":"dev0","x":100,"y":50,"label":"HV"}],
       connectors: [],
     }, data);
 
@@ -1503,10 +1514,22 @@ var simcir = function($) {
 
     //---------added by ehsangharaei---------------
     $("#place-power-line").click(function() {
+
+      powerLineVoltageLevel=$("input[name=optradio]:checked").val();
       newpowerLineLength=$("#lengthFromModal").val()?$("#lengthFromModal").val():200;
       var num_of_inputs=$("#numberOfInputsFromModal").val()?$("#numberOfInputsFromModal").val():5;
-      registerDevice('Power line', createLogicGateFactory(num_of_inputs, powerLine, drawPowerLine) );
-      var $dev=$devicePane.children('.simcir-device').find('.power-line').closest('.simcir-device');
+      if(powerLineVoltageLevel=='HV') {
+        registerDevice('Power line (HV)', createLogicGateFactory(num_of_inputs, powerLine, drawPowerLine));
+        var $dev = $devicePane.children('.simcir-device').find('.power-line-hv').closest('.simcir-device');
+      }
+      if(powerLineVoltageLevel=='MV') {
+        registerDevice('Power line (MV)', createLogicGateFactory(num_of_inputs, powerLine, drawPowerLine));
+        var $dev = $devicePane.children('.simcir-device').find('.power-line-mv').closest('.simcir-device');
+      }
+      if(powerLineVoltageLevel=='LV') {
+        registerDevice('Power line (LV)', createLogicGateFactory(num_of_inputs, powerLine, drawPowerLine));
+        var $dev = $devicePane.children('.simcir-device').find('.power-line-lv').closest('.simcir-device');
+      }
       $dev = createDevice(controller($dev).deviceDef);
       $dev[0].firstChild.outerHTML=$dev[0].firstChild.outerHTML.replace("200", newpowerLineLength);
       adjustDevice($dev);
@@ -1667,6 +1690,7 @@ var simcir = function($) {
       printArray(data.connectors);
       println('  ]');
       print('}');
+
       return buf;
     };
 
@@ -2087,8 +2111,7 @@ var simcir = function($) {
    */
   var createLogicGateFactory = function(op, out, draw) {
     return function(device) {
-      console.log('device',device.$ui[0]);
-      if(device.deviceDef.type =='Power line') {
+      if(device.deviceDef.type =='Power line (HV)' || device.deviceDef.type =='Power line (LV)' || device.deviceDef.type =='Power line (MV)') {
         var numInputs=op;
       }
       else {

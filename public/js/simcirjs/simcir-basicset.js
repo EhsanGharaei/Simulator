@@ -60,7 +60,7 @@
 
   var createLogicGateFactory = function(op, out, draw) {
     return function(device) {
-      if(device.deviceDef.type =='Power line' || device.deviceDef.type =='windmill' || device.deviceDef.type =='Nuclear power plant') {
+      if(device.deviceDef.type =='Power line (MV)' ||device.deviceDef.type =='Power line (HV)' ||device.deviceDef.type =='Power line (LV)'|| device.deviceDef.type =='windmill' || device.deviceDef.type =='Nuclear power plant') {
         var numInputs=op;
       }
       else {
@@ -110,30 +110,13 @@
 
 
 
-  /*$(".power-line-register").click(function(){
-    /!*var powerLineLength=prompt('Enter the length of the line(Default is 500):');
-    var $dev=$devicePane.children('.simcir-device').find('.power-line').closest('.simcir-device');
-    $dev = createDevice(controller($dev).deviceDef);
-    $dev[0].firstChild.outerHTML=$dev[0].firstChild.outerHTML.replace("500", powerLineLength ? powerLineLength:"500");
-    console.log($dev);
-    adjustDevice($dev);
-    addDevice($dev);*!/
-    $s.registerDevice('Power line', createLogicGateFactory(5, powerLine, drawPowerLine) );
-    /!*$('.simcir').each(function() {
-      var $placeHolder = $(this);
-      var text = $placeHolder.text().replace(/^\s+|\s+$/g, '');
-      $s.setupSimcir($placeHolder, JSON.parse(text || '{}') );
-    });*!/
-    console.log('done');
-  });*/
-
-
-
   // register logic gates
   $s.registerDevice('Transformer', createLogicGateFactory(null, BUF, drawBUF) );
   $s.registerDevice('Nuclear power plant', createLogicGateFactory(0, NOT, drawNOT) );
   $s.registerDevice('windmill', createLogicGateFactory(0, BUF, drawAND) );
-  $s.registerDevice('Power line', createLogicGateFactory(5, powerLine, drawPowerLine) );
+  $s.registerDevice('Power line (HV)', createLogicGateFactory(5, powerLine, drawPowerLine) );
+  $s.registerDevice('Power line (MV)', createLogicGateFactory(5, powerLine, drawPowerLine) );
+  $s.registerDevice('Power line (LV)', createLogicGateFactory(5, powerLine, drawPowerLine) );
 
 
 
