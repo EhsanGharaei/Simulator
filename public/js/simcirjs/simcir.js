@@ -1676,7 +1676,7 @@ var simcir = function($) {
               (i + 1 < array.length? ',' : '') );
         });
       };
-      println('{');
+      /*println('{');
       println('  "width":' + data.width + ',');
       println('  "height":' + data.height + ',');
       println('  "showToolbox":' + data.showToolbox + ',');
@@ -1689,7 +1689,110 @@ var simcir = function($) {
       println('  "connectors":[');
       printArray(data.connectors);
       println('  ]');
-      print('}');
+      print('}');*/
+
+      var lv_devices=[];
+      var mv_devices=[];
+      var hv_devices=[];
+      var hv_power_line_ids=[];
+      var mv_power_line_ids=[];
+      var lv_power_line_ids=[];
+      var hv_devices_ids=[];
+      var mv_devices_ids=[];
+      var lv_devices_ids=[];
+      //find power lines IDs
+      for(var i=0;i<data.devices.length;i++){
+        if(data.devices[i].type=='Power line (HV)')
+            hv_power_line_ids.push(data.devices[i].id);
+        else if(data.devices[i].type=='Power line (MV)')
+            mv_power_line_ids.push(data.devices[i].id);
+        else if(data.devices[i].type=='Power line (LV)')
+            lv_power_line_ids.push(data.devices[i].id);
+        }
+      //put devices to related power line id array
+      for(var i=0;i<data.connectors.length;i++){
+        for(var j=0;j<hv_power_line_ids.length;j++){
+            if(data.connectors[i].from.substr(0,4)==hv_power_line_ids[j])
+                hv_devices_ids.push(data.connectors[i].to);
+        }
+        for(var j=0;j<mv_power_line_ids.length;j++){
+            if(data.connectors[i].from.substr(0,4)==mv_power_line_ids[j])
+                mv_devices_ids.push(data.connectors[i].to);
+        }
+        for(var j=0;j<lv_power_line_ids.length;j++){
+            if(data.connectors[i].from.substr(0,4)==lv_power_line_ids[j])
+                lv_devices_ids.push(data.connectors[i].to);
+        }
+      }
+      for(var i=0;i<hv_devices_ids.length;i++)
+          hv_devices_ids[i]=hv_devices_ids[i].substr(0,4)
+      for(var i=0;i<mv_devices_ids.length;i++)
+          mv_devices_ids[i]=mv_devices_ids[i].substr(0,4)
+      for(var i=0;i<lv_devices_ids.length;i++)
+          lv_devices_ids[i]=lv_devices_ids[i].substr(0,4)
+
+      //put non transformer devices to related power line device array
+      for(var i=0;i<data.devices.length;i++) {
+          for (var j = 0; j < hv_devices_ids.length; j++)
+              if ( (hv_devices_ids[j] == data.devices[i].id)&&data.devices[i].type!='Transformer'&&data.devices[i].type!='Power line (HV)'&&data.devices[i].type!='Power line (MV)'&&data.devices[i].type!='Power line (LV)')
+                  hv_devices.push(data.devices[i]);
+          for (var j = 0; j < mv_devices_ids.length; j++)
+              if ((mv_devices_ids[j] == data.devices[i].id)&&data.devices[i].type!='Transformer'&&data.devices[i].type!='Power line (HV)'&&data.devices[i].type!='Power line (MV)'&&data.devices[i].type!='Power line (LV)')
+                  mv_devices.push(data.devices[i]);
+          for (var j = 0; j < lv_devices_ids.length; j++)
+              if ((lv_devices_ids[j] == data.devices[i].id)&&data.devices[i].type!='Transformer'&&data.devices[i].type!='Power line (HV)'&&data.devices[i].type!='Power line (MV)'&&data.devices[i].type!='Power line (LV)')
+                  lv_devices.push(data.devices[i]);
+      }
+      //find power line connectors
+        var power_line_connectors=[];
+        var transformer_ids=[];
+        for(var i=0;i<data.devices.length;i++){
+          if(data.devices[i].type=='Transformer')
+              transformer_ids.push(data.devices[i].id)
+        }
+        for(i=0;i<transformer_ids.length;i++){
+          var connector={};
+          connector.device=transformer_ids[i];
+          for(j=0;j<data.connectors.length;j++){
+            if(data.connectors[j].from.substring(0,4)==transformer_ids[i])
+              connector.to=data.connectors[j].to.substring(0,4);
+            if(data.connectors[j].to.substring(0,4)==transformer_ids[i])
+                connector.from=data.connectors[j].from.substring(0,4);
+          }
+          //power_line_connectors.push('{"transformer_id":"'+connector.device+'","from":"'+connector.from+'","to":"'+connector.to+'"}');
+            /*for(var k=0;k<data.devices.length;k++){
+              if(connector.device==data.devices[k].id)
+                connector.device=data.devices[k];
+              if(connector.from==data.devices[k].id)
+                  connector.from=data.devices[k];
+              if(connector.to==data.devices[k].id)
+                  connector.to=data.devices[k];
+            }*/
+            power_line_connectors.push(connector);
+        }
+
+        println('{');
+        println('  "hv_power_line_devices":[');
+        printArray(hv_devices);
+        println('  ],');
+        println('  "mv_power_line_devices":[');
+        printArray(mv_devices);
+        println('  ],');
+        println('  "lv_power_line_devices":[');
+        printArray(lv_devices);
+        println('  ],');
+        println('  "transformers":[');
+        printArray(power_line_connectors);
+        println('  ]');
+        println('  "all_devices":[');
+        printArray(data.devices);
+        println('  ],');
+        println('  "all_connections":[');
+        printArray(data.connectors);
+        println('  ]');
+        print('}');
+
+
 
       return buf;
     };

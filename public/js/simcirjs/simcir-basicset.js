@@ -120,7 +120,4 @@
 
 
 
-
-
-
 }(jQuery, simcir);
