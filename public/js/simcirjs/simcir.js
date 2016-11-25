@@ -2299,6 +2299,39 @@ var simcir = function($) {
     });
   });
 
+    /**
+     * Zooming
+     * Input: -
+     * @method svgPanZoom
+     * @return -
+     */
+  $( document ).ready(function() {
+      var svgElement = document.querySelector('.simcir-workspace');
+      var panZoomTiger = svgPanZoom(svgElement,{
+          viewportSelector: '.svg-pan-zoom_viewport'
+          , panEnabled: false
+          , controlIconsEnabled: true
+          , zoomEnabled: true
+          , dblClickZoomEnabled: false
+          , mouseWheelZoomEnabled: false
+          , preventMouseEventsDefault: true
+          , zoomScaleSensitivity: 0.2
+          , minZoom: 0.5
+          , maxZoom: 10
+          , fit: true
+          , contain: false
+          , center: true
+          , refreshRate: 'auto'
+          , beforeZoom: function(){}
+          , onZoom: function(){}
+          , beforePan: function(){}
+          , onPan: function(){}
+          //, customEventsHandler: {}
+          , eventsListenerElement: null
+      });
+
+  });
+
   return {
     registerDevice: registerDevice,
     setupSimcir: setupSimcir,
