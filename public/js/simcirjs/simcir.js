@@ -2305,12 +2305,13 @@ var simcir = function($) {
      * @method svgPanZoom
      * @return -
      */
-  $( document ).ready(function() {
+    var panZoomTiger;
+    $( document ).ready(function() {
       var svgElement = document.querySelector('.simcir-workspace');
-      var panZoomTiger = svgPanZoom(svgElement,{
+      panZoomTiger = svgPanZoom(svgElement,{
           viewportSelector: '.svg-pan-zoom_viewport'
           , panEnabled: false
-          , controlIconsEnabled: true
+          , controlIconsEnabled: false
           , zoomEnabled: true
           , dblClickZoomEnabled: false
           , mouseWheelZoomEnabled: false
@@ -2331,8 +2332,32 @@ var simcir = function($) {
       });
 
   });
+    $("#zoom-in").click(function() {
+        panZoomTiger.zoomIn(0.5);
+    });
+    $("#zoom-out").click(function() {
+        panZoomTiger.zoomOut(0.5);
+    });
+    $("#zoom-reset").click(function() {
+        panZoomTiger.reset();
+    });
+    $("#pan-left").click(function() {
+        panZoomTiger.panBy({x: -50, y: 0});
+    });
+    $("#pan-right").click(function() {
+        panZoomTiger.panBy({x: 50, y: 0});
+    });
+    $("#pan-up").click(function() {
+        panZoomTiger.panBy({x: 0, y: -50});
+    });
+    $("#pan-down").click(function() {
+        panZoomTiger.panBy({x: 0, y: 50});
+    });
+    $("#pan-reset").click(function() {
+        panZoomTiger.resetPan();
+    });
 
-  return {
+    return {
     registerDevice: registerDevice,
     setupSimcir: setupSimcir,
     createWorkspace: createWorkspace,
