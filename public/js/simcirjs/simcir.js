@@ -1458,20 +1458,27 @@ var simcir = function($) {
     });
     controller($scrollbar).setSize(barWidth, workspaceHeight);
     transform($scrollbar, toolboxWidth - barWidth, 0);
-    var $toolboxPane = createSVGElement('g').
-      attr('class', 'simcir-toolbox').
-      append(createSVGElement('rect').
-        attr({x: 0, y: 0,
-          width: toolboxWidth,
-          height: workspaceHeight}) ).
-      append($toolboxDevicePane).
-      append($scrollbar).on('wheel', function(event) {
-        event.preventDefault();
-        if (event.originalEvent.deltaY < 0) {
-          $scrollbar.trigger('unitup');
-        } else if (event.originalEvent.deltaY > 0) {
-          $scrollbar.trigger('unitdown');
-        }
+      var $toolboxPane = $('<div class="toolbox-zome"></div>');
+      $toolboxPane.append(createSVG(toolboxWidth,workspaceHeight).attr('class', 'simcir-toolbox_svg'));
+      $(document).ready(function () {
+          $('.simcir-toolbox').append($toolboxPane);
+          $('.simcir-toolbox_svg').append(createSVGElement('g').
+          attr('class', 'simcir-toolbox').
+          append(createSVGElement('rect').
+          attr({x: 0, y: 0,
+              width: toolboxWidth,
+              height: workspaceHeight}) ).
+          append($toolboxDevicePane).
+          append($scrollbar).on('wheel', function(event) {
+              event.preventDefault();
+              if (event.originalEvent.deltaY < 0) {
+                  $scrollbar.trigger('unitup');
+              } else if (event.originalEvent.deltaY > 0) {
+                  $scrollbar.trigger('unitdown');
+              }
+          })
+          );
+
       });
 
     var $devicePane = createSVGElement('g');
@@ -1483,7 +1490,7 @@ var simcir = function($) {
     enableEvents($temporaryPane, false);
 
     if (data.showToolbox) {
-      $workspace.append($toolboxPane);
+      //$workspace.append($toolboxPane);
     }
     $workspace.append($devicePane);
     $workspace.append($connectorPane);
@@ -2330,6 +2337,8 @@ var simcir = function($) {
           //, customEventsHandler: {}
           , eventsListenerElement: null
       });
+
+
 
   });
     $("#zoom-in").click(function() {
