@@ -1570,17 +1570,7 @@ var simcir = function($) {
           addDevice($dev);
       });
 
-      $("#remove-device-button").click(function() {
-          var $dev = $devicePane.children('.simcir-device').find('.simcir-device-selected').closest('.simcir-device');
-          if (!controller($dev).isSelected() ) {
-              deselectAll();
-              addSelected($dev);
-              // to front.
-              $dev.parent().append($dev.detach() );
-          }
-          enableEvents($dev, true);
-          removeDevice($dev);
-      });
+
 
     /**
      * disconnect nodes connection
@@ -1997,6 +1987,17 @@ var simcir = function($) {
           }
         });
       };
+        /**
+         *
+         * Input: -
+         * @method RemoveDeviceButton
+         * @return -
+         */
+      $("#remove-device-button").click(function() {
+          $.each($selectedDevices, function(i, $dev) {
+            removeDevice($dev);
+          });
+      });
     };
     /**
      *
