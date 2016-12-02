@@ -862,13 +862,20 @@ var simcir = function($) {
         var $icon = createSVGElement('image').attr('href', './public/images/flash.png').attr('height', 15).attr('width', 15).attr('x', -25).attr('y', 7);
       }
       else{
-        var $body = createSVGElement('rect').attr('class', 'simcir-device-body').attr('rx', 2).attr('ry', 2);
-        if(device.deviceDef.type =='Transformer')
-          var $icon = createSVGElement('image').attr('href', './public/images/transformer.png').attr('height', 24).attr('width', 24).attr('x', 4).attr('y',4);
-        if(device.deviceDef.type =='Nuclear power plant')
-          var $icon = createSVGElement('image').attr('href', './public/images/nuclearPowerPlant.png').attr('height', 28).attr('width', 28).attr('x', 2).attr('y',2);
-        if(device.deviceDef.type =='windmill')
-          var $icon = createSVGElement('image').attr('href', './public/images/windmill.png').attr('height', 28).attr('width', 28).attr('x', 2).attr('y',2);
+
+        if(device.deviceDef.type =='Transformer'){
+            var $body = createSVGElement('rect').attr('class', 'Transformer simcir-device-body').attr('rx', 2).attr('ry', 2);
+            var $icon = createSVGElement('image').attr('href', './public/images/transformer.png').attr('height', 24).attr('width', 24).attr('x', 4).attr('y',4);
+        }
+
+        if(device.deviceDef.type =='Nuclear power plant'){
+            var $body = createSVGElement('rect').attr('class', 'nuclear-power-plant simcir-device-body').attr('rx', 2).attr('ry', 2);
+            var $icon = createSVGElement('image').attr('href', './public/images/nuclearPowerPlant.png').attr('height', 28).attr('width', 28).attr('x', 2).attr('y',2);
+        }
+        if(device.deviceDef.type =='windmill'){
+            var $body = createSVGElement('rect').attr('class', 'windmill simcir-device-body').attr('rx', 2).attr('ry', 2);
+            var $icon = createSVGElement('image').attr('href', './public/images/windmill.png').attr('height', 28).attr('width', 28).attr('x', 2).attr('y',2);
+        }
 
       }
       device.$ui.prepend($icon);
@@ -1410,11 +1417,14 @@ var simcir = function($) {
     data = $.extend({
       width: 1100, //edited by ehsangharaei
       height: 500, //edited by ehsangharaei
-      showToolbox: true,
+      showToolbox: false,
       toolbox: defaultToolbox,
       devices: [{"type":"Power line (MV)","id":"dev0","x":350,"y":200,"label":"MV"},
                 {"type":"Power line (LV)","id":"dev0","x":600,"y":350,"label":"LV"},
-                {"type":"Power line (HV)","id":"dev0","x":100,"y":50,"label":"HV"}],
+                {"type":"Power line (HV)","id":"dev0","x":100,"y":50,"label":"HV"},
+                {"type":"Transformer","id":"dev3","x":80,"y":152,"label":"Transformer"},
+                {"type":"Nuclear power plant","id":"dev4","x":80,"y":216,"label":"Nuclear power plant"},
+                {"type":"windmill","id":"dev5","x":80,"y":280,"label":"windmill"}],
       connectors: [],
     }, data);
 
@@ -1458,27 +1468,20 @@ var simcir = function($) {
     });
     controller($scrollbar).setSize(barWidth, workspaceHeight);
     transform($scrollbar, toolboxWidth - barWidth, 0);
-      var $toolboxPane = $('<div class="toolbox-zome"></div>');
-      $toolboxPane.append(createSVG(toolboxWidth,workspaceHeight).attr('class', 'simcir-toolbox_svg'));
-      $(document).ready(function () {
-          $('.simcir-toolbox').append($toolboxPane);
-          $('.simcir-toolbox_svg').append(createSVGElement('g').
-          attr('class', 'simcir-toolbox').
-          append(createSVGElement('rect').
-          attr({x: 0, y: 0,
-              width: toolboxWidth,
-              height: workspaceHeight}) ).
-          append($toolboxDevicePane).
-          append($scrollbar).on('wheel', function(event) {
-              event.preventDefault();
-              if (event.originalEvent.deltaY < 0) {
-                  $scrollbar.trigger('unitup');
-              } else if (event.originalEvent.deltaY > 0) {
-                  $scrollbar.trigger('unitdown');
-              }
-          })
-          );
-
+    var $toolboxPane = createSVGElement('g').
+      attr('class', 'simcir-toolbox').
+      append(createSVGElement('rect').
+        attr({x: 0, y: 0,
+          width: toolboxWidth,
+          height: workspaceHeight}) ).
+      append($toolboxDevicePane).
+      append($scrollbar).on('wheel', function(event) {
+        event.preventDefault();
+        if (event.originalEvent.deltaY < 0) {
+          $scrollbar.trigger('unitup');
+        } else if (event.originalEvent.deltaY > 0) {
+          $scrollbar.trigger('unitdown');
+        }
       });
 
     var $devicePane = createSVGElement('g');
@@ -1490,7 +1493,7 @@ var simcir = function($) {
     enableEvents($temporaryPane, false);
 
     if (data.showToolbox) {
-      //$workspace.append($toolboxPane);
+      $workspace.append($toolboxPane);
     }
     $workspace.append($devicePane);
     $workspace.append($connectorPane);
@@ -1542,6 +1545,42 @@ var simcir = function($) {
       adjustDevice($dev);
       addDevice($dev);
     });
+
+      $("#transformer-button").click(function() {
+          registerDevice('Transformer', createLogicGateFactory(null, BUF, drawBUF));
+          var $dev = $devicePane.children('.simcir-device').find('.Transformer').closest('.simcir-device');
+          $dev = createDevice(controller($dev).deviceDef);
+          adjustDevice($dev);
+          addDevice($dev);
+      });
+
+      $("#nuclearPowerPlant-button").click(function() {
+          registerDevice('Nuclear power plant', createLogicGateFactory(0, NOT, drawNOT));
+          var $dev = $devicePane.children('.simcir-device').find('.nuclear-power-plant').closest('.simcir-device');
+          $dev = createDevice(controller($dev).deviceDef);
+          adjustDevice($dev);
+          addDevice($dev);
+      });
+
+      $("#windmill-button").click(function() {
+          registerDevice('windmill', createLogicGateFactory(0, BUF, drawAND));
+          var $dev = $devicePane.children('.simcir-device').find('.windmill').closest('.simcir-device');
+          $dev = createDevice(controller($dev).deviceDef);
+          adjustDevice($dev);
+          addDevice($dev);
+      });
+
+      $("#remove-device-button").click(function() {
+          var $dev = $devicePane.children('.simcir-device').find('.simcir-device-selected').closest('.simcir-device');
+          if (!controller($dev).isSelected() ) {
+              deselectAll();
+              addSelected($dev);
+              // to front.
+              $dev.parent().append($dev.detach() );
+          }
+          enableEvents($dev, true);
+          removeDevice($dev);
+      });
 
     /**
      * disconnect nodes connection
@@ -2221,7 +2260,8 @@ var simcir = function($) {
    */
   var createLogicGateFactory = function(op, out, draw) {
     return function(device) {
-      if(device.deviceDef.type =='Power line (HV)' || device.deviceDef.type =='Power line (LV)' || device.deviceDef.type =='Power line (MV)') {
+      if(device.deviceDef.type =='Power line (HV)' || device.deviceDef.type =='Power line (LV)' || device.deviceDef.type =='Power line (MV)'
+          || device.deviceDef.type =='Nuclear power plant' || device.deviceDef.type =='windmill'){
         var numInputs=op;
       }
       else {
@@ -2290,7 +2330,27 @@ var simcir = function($) {
    * @return a
    */
   var powerLine= function(a) { return a; };
-  //for test
+  var BUF = function(a) { return (a == 1)? 1 : 0; };
+  var drawBUF = function(g, x, y, width, height) {
+        //g.moveTo(x, y);
+      /*g.lineTo(x + width, y + height / 2);
+       g.lineTo(x, y + height);
+       g.lineTo(x, y);*/
+        //g.closePath(true);
+    };
+  var NOT = function(a) { return (a == 1)? 0 : 1; };
+  var drawNOT = function(g, x, y, width, height) {
+        //drawBUF(g, x - 1, y, width - 2, height);
+        //g.drawCircle(x + width - 1, y + height / 2, 2);
+    };
+  var drawAND = function(g, x, y, width, height) {
+      /*g.moveTo(x, y);
+       g.curveTo(x + width, y, x + width, y + height / 2);
+       g.curveTo(x + width, y + height, x, y + height);
+       g.lineTo(x, y);
+       g.closePath(true);*/
+    };
+
 
   $(function() {
     $('.simcir').each(function() {
@@ -2337,8 +2397,6 @@ var simcir = function($) {
           //, customEventsHandler: {}
           , eventsListenerElement: null
       });
-
-
 
   });
     $("#zoom-in").click(function() {
