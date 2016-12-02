@@ -1415,8 +1415,8 @@ var simcir = function($) {
   var createWorkspace = function(data) {
 
     data = $.extend({
-      width: 1100, //edited by ehsangharaei
-      height: 500, //edited by ehsangharaei
+      width: 4000, //edited by ehsangharaei
+      height:4000, //edited by ehsangharaei
       showToolbox: false,
       toolbox: defaultToolbox,
       devices: [{"type":"Power line (MV)","id":"dev0","x":350,"y":200,"label":"MV"},
@@ -1517,7 +1517,8 @@ var simcir = function($) {
     var removeDevice = function($dev) {
       $dev.trigger('deviceRemove');
       // before remove, disconnect all
-      controller($dev).disconnectAll();
+      if(controller($dev))
+          controller($dev).disconnectAll();
       $dev.remove();
       updateConnectors();
     };
@@ -2385,7 +2386,7 @@ var simcir = function($) {
           , mouseWheelZoomEnabled: false
           , preventMouseEventsDefault: true
           , zoomScaleSensitivity: 0.2
-          , minZoom: 0.5
+          , minZoom: 0.3
           , maxZoom: 10
           , fit: true
           , contain: false
@@ -2402,24 +2403,27 @@ var simcir = function($) {
   });
     $("#zoom-in").click(function() {
         panZoomTiger.zoomIn(0.5);
+        panZoomTiger.resetPan();
     });
     $("#zoom-out").click(function() {
         panZoomTiger.zoomOut(0.5);
+        panZoomTiger.resetPan();
     });
     $("#zoom-reset").click(function() {
         panZoomTiger.reset();
+        panZoomTiger.resetPan();
     });
     $("#pan-left").click(function() {
-        panZoomTiger.panBy({x: -50, y: 0});
+        panZoomTiger.panBy({x: 100, y: 0});
     });
     $("#pan-right").click(function() {
-        panZoomTiger.panBy({x: 50, y: 0});
+        panZoomTiger.panBy({x: -100, y: 0});
     });
     $("#pan-up").click(function() {
-        panZoomTiger.panBy({x: 0, y: -50});
+        panZoomTiger.panBy({x: 0, y: 100});
     });
     $("#pan-down").click(function() {
-        panZoomTiger.panBy({x: 0, y: 50});
+        panZoomTiger.panBy({x: 0, y: -100});
     });
     $("#pan-reset").click(function() {
         panZoomTiger.resetPan();
